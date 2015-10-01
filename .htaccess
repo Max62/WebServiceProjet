@@ -1,0 +1,4 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+RewriteRule ^/ws/([a-zA-Z0-9_-]+)/([0-9]+) UserController.php?login=$1&password=$2 [L]
