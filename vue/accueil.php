@@ -1,9 +1,5 @@
 <?php
 session_start();
-//start_session();
-echo "<pre>";
-print_r($_POST['client']);
-echo "</pre>";
 
 $_SESSION['monUserCo'] = $_POST['client'];
 
@@ -25,7 +21,7 @@ $_SESSION['monUserCo'] = $_POST['client'];
                         <li class="name">
                             <h1>
                                 <a href="#">
-                                    <?php echo $_SESSION['monUserCo'].['firstName']." ".$_SESSION['monUserCo'].['lastName']; ?>
+                                    <?php echo $_SESSION['monUserCo']['firstName']." ".$_SESSION['monUserCo']['lastName']; ?>
                                 </a>
                             </h1>
                         </li>
