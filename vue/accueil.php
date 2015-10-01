@@ -1,7 +1,10 @@
 <?php
 session_start();
 
-$_SESSION['monUserCo'] = $_POST['client'];
+if(isset($_POST['client'])){
+    $_SESSION['monUserCo'] = $_POST['client'];
+}
+
 
 ?>
 
@@ -36,7 +39,7 @@ $_SESSION['monUserCo'] = $_POST['client'];
                             <li class="has-form">
                                 <div class="row collapse">
                                     <div class="large-8 small-9 columns">
-                                        <input type="text" placeholder="Indiquez le nom d'un livre" size="50">
+                                        <input type="text" placeholder="Indiquez le nom d'un livre" size="40">
                                     </div>
                                     <div class="large-4 small-3 columns">
                                         <a href="#" class="alert button expand">Rechercher</a>
@@ -152,5 +155,34 @@ $_SESSION['monUserCo'] = $_POST['client'];
 
 </body>
 
+<script>
+     <script>
+        $(document).foundation();
 
+        $( "#btnCnx" ).click(function() {
+            $.ajax({
+                method: "POST",
+                url : "/WebServiceProjet/controller/UserController.php",
+                data: { login: $("#monLogin").val(), password: $("#monPwd").val() },
+                success: function(response) {
+                    if (jQuery.parseJSON(response).mail != ""){
+                        $.ajax({
+                            type: "POST",
+                            url: "/WebServiceProjet/vue/accueil.php",
+                            data: { client: jQuery.parseJSON(response)},
+                            success:function(data){
+                                $('body').replaceWith(data);
+                            }
+                        });
+
+
+                        };
+                    }
+                });
+            });
+
+    </script>
+
+
+</script>
 <?php include_once 'struct/footer.php'; ?>

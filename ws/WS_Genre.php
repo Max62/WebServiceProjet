@@ -17,19 +17,19 @@ class WS_Users implements IWebServiciable {
     }
 
     public function doGet() {
-
-    }
-
-    public function doPost() {
         try
         {
             $pdo = getConnexion();
             $pdo->beginTransaction();
 
-            $sql = "SELECT lastname,firstname,mail,login,password FROM Users WHERE login = '".$this->requestParams['login']."' AND password ='".$this->requestParams['password']."'";
+            $sql = "SELECT idtype,nametype FROM type";
             $res = $pdo->query($sql);
 
             if ($res) {
+                echo "mesGenres";
+                echo "<pre>";
+                print_r($res);
+                echo "</pre>";
                 $row = $res->fetch(PDO::FETCH_ASSOC);
                 return $row;
             }
@@ -50,6 +50,10 @@ class WS_Users implements IWebServiciable {
         }
     }
 
+    public function doPost() {
+
+    }
+
     public function doPut() {
 
     }
@@ -66,6 +70,6 @@ class WS_Users implements IWebServiciable {
     public function doNeedAuth() {
         return true;
     }
-} 
+}
 
 ?>
