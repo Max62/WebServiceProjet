@@ -17,6 +17,10 @@ class WS_Users implements IWebServiciable {
     }
 
     public function doGet() {
+
+    }
+
+    public function doPost() {
         try
         {
             $pdo = getConnexion();
@@ -25,9 +29,10 @@ class WS_Users implements IWebServiciable {
             $sql = "SELECT * FROM Users WHERE login = '".$this->requestParams['login']."' AND password ='".$this->requestParams['password']."'";
             $res = $pdo->query($sql);
 
-           // echo "<pre>";
-            return $res->fetch();
-           // echo"</pre>";
+            if ($res) {
+                $row = $res->fetch(PDO::FETCH_ASSOC);
+                return $row;
+            }
 
         }
         catch(Exception $e) //en cas d'erreur
@@ -43,10 +48,6 @@ class WS_Users implements IWebServiciable {
             //on arrête l'exécution s'il y a du code après
             exit();
         }
-    }
-
-    public function doPost() {
-
     }
 
     public function doPut() {

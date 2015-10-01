@@ -15,52 +15,73 @@
 
 
 <body>
-    <div class="row">
-        <div class="large-12 columns">
-            <h2>Page de connexion</h2>
-        </div>
-        <div class="large-12 columns">
-            <form>
-                <fieldset>
-                    <legend>Connexion</legend>
-                    <div class="row">
+<div class="row">
+    <div class="large-12 columns">
+        <h2>Page de connexion</h2>
+    </div>
+    <div class="large-12 columns">
+        <fieldset>
+            <legend>Connexion</legend>
+            <div class="row">
 
-                        <div class="large-12 columns">
-                            <div class="row collapse prefix-radius">
-                                <div class="large-3 columns">
-                                    <span class="prefix">Login</span>
-                                </div>
-                                <div class="large-9 columns">
-                                    <input type="text" required="required" placeholder="Login">
-                                </div>
-                            </div>
+                <div class="large-12 columns">
+                    <div class="row collapse prefix-radius">
+                        <div class="large-3 columns">
+                            <span class="prefix">Login</span>
                         </div>
-
-                        <div class="large-12 columns">
-                            <div class="row collapse prefix-radius">
-                                <div class="large-3 columns">
-                                    <span class="prefix">Password</span>
-                                </div>
-                                <div class="large-9 columns">
-                                    <input type="password" required="required" placeholder="Password">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="large-12 columns">
-                            <input class="button radius success right" type="submit" value="Connexion">
-                            <a href="vue/inscription.php"><input class="button radius success left" type="button" value="Inscription"></a>
+                        <div class="large-9 columns">
+                            <input type="text" required="required" placeholder="Login" id="monLogin">
                         </div>
                     </div>
-                </fieldset>
-            </form>
-        </div>
+                </div>
+
+                <div class="large-12 columns">
+                    <div class="row collapse prefix-radius">
+                        <div class="large-3 columns">
+                            <span class="prefix">Password</span>
+                        </div>
+                        <div class="large-9 columns">
+                            <input type="password" required="required" placeholder="Password" id="monPwd">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="large-12 columns">
+                    <input class="button radius success right" type="button" value="Connexion" id="btnCnx">
+                    <a href="vue/inscription.php"><input class="button radius success left" type="button" value="Inscription"></a>
+                </div>
+            </div>
+        </fieldset>
+    </div>
 
 
     <script src="/WebServiceProjet/asset/js/vendor/jquery.js"></script>
     <script src="/WebServiceProjet/asset/js/foundation.min.js"></script>
     <script>
         $(document).foundation();
+
+        $( "#btnCnx" ).click(function() {
+            $.ajax({
+                method: "POST",
+                url : "/WebServiceProjet/controller/UserController.php",
+                data: { login: $("#monLogin").val(), password: $("#monPwd").val() },
+                success: function(response) {
+                    if (jQuery.parseJSON(response).mail != ""){
+                        $.ajax({
+                            type: "POST",
+                            url: "/WebServiceProjet/vue/accueil.php",
+                            data: { client: jQuery.parseJSON(response)},
+                            success:function(data){
+                                $('body').replaceWith(data);
+                            }
+                        });
+
+
+                        };
+                    }
+                });
+            });
+
     </script>
 </body>
 </html>

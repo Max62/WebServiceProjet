@@ -1,3 +1,14 @@
+<?php
+session_start();
+//start_session();
+echo "<pre>";
+print_r($_POST['client']);
+echo "</pre>";
+
+$_SESSION['monUserCo'] = $_POST['client'];
+
+?>
+
 <?php include_once 'struct/header.php'; ?>
 
 <body>
@@ -14,7 +25,7 @@
                         <li class="name">
                             <h1>
                                 <a href="#">
-                                    JEAN TOMBE RAID
+                                    <?php echo $_SESSION['monUserCo'].['firstName']." ".$_SESSION['monUserCo'].['lastName']; ?>
                                 </a>
                             </h1>
                         </li>
@@ -40,22 +51,14 @@
                             <li class="has-dropdown">
                                 <a href="#">Genre</a>
                                 <ul class="dropdown">
-                                    <?php
-                                    try {
-                                    $bdd = new PDO('mysql:host=localhost;dbname=projetwebservice', 'root', '');
-                                    } catch (Exception $e) {
-                                    die('Erreur : ' . $e->getMessage());
-                                    }
 
-                                    $sql = "SELECT * FROM type";
-
-                                    $res = $bdd->query($sql);
-                                    $res->setFetchMode(PDO::FETCH_OBJ);
-
-                                    while($genre = $res->fetch()){
-                                        echo '<li>'.$genre->nameType.'</li>';
-                                    }
-                                    ?>
+                                </ul>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="#">Ajouter</a>
+                                <ul class="dropdown">
+                                    <li><a href="/WebServiceProjet/vue/ajoutLivreAudio.php">Un livre</a></li>
+                                    <li><a href="/WebServiceProjet/vue/ajoutGenreLivre.php">Un genre</a></li>
                                 </ul>
                             </li>
                             <li class="divider"></li>

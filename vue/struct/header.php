@@ -10,11 +10,11 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Projet WebService Audio</title>
 
-        <link rel="stylesheet" href="../asset/css/normalize.css">
-        <link rel="stylesheet" href="../asset/css/foundation.css">
+        <link rel="stylesheet" href="/WebServiceProjet/asset/css/normalize.css">
+        <link rel="stylesheet" href="/WebServiceProjet/asset/css/foundation.css">
 
 
-        <script src="../asset/js/vendor/modernizr.js"></script>
+        <script src="/WebServiceProjet/asset/js/vendor/modernizr.js"></script>
 
     </head>
 
