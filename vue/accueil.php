@@ -84,7 +84,7 @@
 
             <div class="large-4 small-12 columns">
 
-                <img src="http://placehold.it/500x500&text=Logo">
+                <img src="/WebServiceProjet/ressource/casque.jpg">
 
                 <div class="hide-for-small panel">
                     <h3>Header</h3>
@@ -117,7 +117,7 @@
                                      <div class='row'>
 
                                         <div class='large-2 small-6 columns'>
-                                            <img src='http://placehold.it/300x300&text=Site Owner'>
+                                            <img src='/WebServiceProjet/ressource/listen.jpeg'>
                                         </div>
 
                                         <div class='large-10 small-6 columns'>
