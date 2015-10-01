@@ -1,13 +1,12 @@
 <?php
 
 require_once '../ws/IWebServiciable.php';
-require_once '../model/Users.php';
 require_once '../ws/bdd.ini.php';
 
 
 class WS_Users implements IWebServiciable {
 
-    public $login;
+    public $requestParams;
 
     function __construct($requestParams) {
         $this->requestParams = $requestParams;
@@ -21,24 +20,14 @@ class WS_Users implements IWebServiciable {
         try
         {
             $pdo = getConnexion();
-            //$pdo->beginTransaction();
-
-
+            $pdo->beginTransaction();
 
             $sql = "SELECT * FROM Users WHERE login = '".$this->requestParams['login']."' AND password ='".$this->requestParams['password']."'";
-            //echo $sql;
             $res = $pdo->query($sql);
-            echo $pdo->errorCode();
 
-            $res->setFetchMode(PDO::FETCH_OBJ);
-
-            echo $res->fetch();
-            echo 'ici';die();
-
-            /*if (sizeof($res) == 1) {
-                echo "MAX" . $res;
-                return $res;
-            }*/
+           // echo "<pre>";
+            return $res->fetch();
+           // echo"</pre>";
 
         }
         catch(Exception $e) //en cas d'erreur
