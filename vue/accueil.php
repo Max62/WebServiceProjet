@@ -1,4 +1,7 @@
 <?php include_once 'struct/header.php'; ?>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
 
 <body>
 <div class="row">
@@ -14,7 +17,7 @@
                         <li class="name">
                             <h1>
                                 <a href="#">
-                                    JEAN DUPONT
+                                    JEAN TOMBE RAID
                                 </a>
                             </h1>
                         </li>
@@ -87,15 +90,14 @@
                 <img src="/WebServiceProjet/ressource/casque.jpg">
 
                 <div class="hide-for-small panel">
-                    <h3>Header</h3>
-                    <h5 class="subheader">Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Donec dignissim nibh fermentum odio ornare sagittis.
-                    </h5>
+                    <h3>FREE BOOK</h3>
+                    <h5 class="subheader">Un petit moment détente ? Venez écouter un de nos livres audio</h5>
                 </div>
 
                 <a href="#">
                     <div class="panel callout radius">
                         <h6>99Â  items in your cart</h6>
-                    </div>
+            </div>
                 </a>
 
             </div>
@@ -124,9 +126,7 @@
                                             <strong>Donjon de Naheulbeuk - SAISON ".$i."<hr/></strong>
 
                                             <audio controls='controls' preload='none'>
-                                                <source src='music.mp3 type='audio/mp3' />
-                                                <source src='music.aac' type='audio/aac />
-                                                <source src='music.ogg' type='audio/ogg' />
+                                                <source src='/WebServiceProjet/ressource/chansondutavernier.mp3' type='audio/mp3' />
                                             </audio>
                                         </div>
 
