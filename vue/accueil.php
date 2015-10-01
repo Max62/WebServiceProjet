@@ -14,7 +14,7 @@
                         <li class="name">
                             <h1>
                                 <a href="#">
-                                    Top Bar Title
+                                    JEAN DUPONT
                                 </a>
                             </h1>
                         </li>
@@ -26,7 +26,7 @@
                         <ul class="right">
                             <li class="divider"></li>
                             <li class="has-dropdown">
-                                <a href="#">Main Item 1</a>
+                                <a href="#">Genre</a>
                                 <ul class="dropdown">
                                     <li><label>Section Name</label></li>
                                     <li class="has-dropdown">
@@ -52,17 +52,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="#">Main Item 2</a></li>
+                            <li><a href="#">Mon Compte</a></li>
                             <li class="divider"></li>
-                            <li class="has-dropdown">
-                                <a href="#">Main Item 3</a>
-                                <ul class="dropdown">
-                                    <li><a href="#">Dropdown Option</a></li>
-                                    <li><a href="#">Dropdown Option</a></li>
-                                    <li><a href="#">Dropdown Option</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">See all →</a></li>
-                                </ul>
+                            <li>
+                                <a href="#">Logout</a>
                             </li>
                         </ul>
                     </section>
@@ -101,68 +94,9 @@
 
 
             <div class="large-8 columns">
-                <div class="row">
-
-                    <div class="large-4 small-6 columns">
-                        <img src="http://placehold.it/1000x1000&text=Thumbnail">
-
-                        <div class="panel">
-                            <h5>Item Name</h5>
-                            <h6 class="subheader">$000.00</h6>
-                        </div>
-                    </div>
-
-                    <div class="large-4 small-6 columns">
-                        <img src="http://placehold.it/500x500&text=Thumbnail">
-
-                        <div class="panel">
-                            <h5>Item Name</h5>
-                            <h6 class="subheader">$000.00</h6>
-                        </div>
-                    </div>
-
-                    <div class="large-4 small-6 columns">
-                        <img src="http://placehold.it/500x500&text=Thumbnail">
-
-                        <div class="panel">
-                            <h5>Item Name</h5>
-                            <h6 class="subheader">$000.00</h6>
-                        </div>
-                    </div>
-
-                    <div class="large-4 small-6 columns">
-                        <img src="http://placehold.it/500x500&text=Thumbnail">
-
-                        <div class="panel">
-                            <h5>Item Name</h5>
-                            <h6 class="subheader">$000.00</h6>
-                        </div>
-                    </div>
-
-                    <div class="large-4 small-6 columns">
-                        <img src="http://placehold.it/500x500&text=Thumbnail">
-
-                        <div class="panel">
-                            <h5>Item Name</h5>
-                            <h6 class="subheader">$000.00</h6>
-                        </div>
-                    </div>
-
-                    <div class="large-4 small-6 columns">
-                        <img src="http://placehold.it/500x500&text=Thumbnail">
-
-                        <div class="panel">
-                            <h5>Item Name</h5>
-                            <h6 class="subheader">$000.00</h6>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
 
                 <div class="row">
+
                     <div class="large-12 columns">
                         <div class="panel">
                             <div class="row">
@@ -174,7 +108,35 @@
                                 <div class="large-10 small-6 columns">
                                     <strong>This Site Is Managed By<hr/></strong>
 
-                                    Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Donec dignissim nibh fermentum odio ornare sagittis
+                                    <audio controls="controls" preload="none">
+                                        <source src="music.mp3" type="audio/mp3" />
+                                        <source src="music.aac" type="audio/aac" />
+                                        <source src="music.ogg" type="audio/ogg" />
+                                        Votre navigateur n'est pas compatible
+                                    </audio>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="large-12 columns">
+                        <div class="panel">
+                            <div class="row">
+
+                                <div class="large-2 small-6 columns">
+                                    <img src="http://placehold.it/300x300&text=Site Owner">
+                                </div>
+
+                                <div class="large-10 small-6 columns">
+                                    <strong>This Site Is Managed By<hr/></strong>
+
+                                    <audio controls="controls" preload="none">
+                                        <source src="music.mp3" type="audio/mp3" />
+                                        <source src="music.aac" type="audio/aac" />
+                                        <source src="music.ogg" type="audio/ogg" />
+                                        Votre navigateur n'est pas compatible
+                                    </audio>
                                 </div>
 
                             </div>
@@ -195,26 +157,11 @@
                 <div class="row">
 
                     <div class="large-6 columns">
-                        <p>© Copyright no one at all. Go to town.</p>
+                        <p>© Copyright</p>
                     </div>
-
-                    <div class="large-6 columns">
-                        <ul class="inline-list right">
-                            <li><a href="#">Link 1</a></li>
-                            <li><a href="#">Link 2</a></li>
-                            <li><a href="#">Link 3</a></li>
-                            <li><a href="#">Link 4</a></li>
-                        </ul>
-                    </div>
-
                 </div>
             </div>
         </footer>
-
-
-
-    </div>
-</div>
 
 
 
