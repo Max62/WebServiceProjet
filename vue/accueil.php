@@ -18,12 +18,24 @@
                                 </a>
                             </h1>
                         </li>
+
                         <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
                     </ul>
 
                     <section class="top-bar-section">
 
                         <ul class="right">
+
+                            <li class="has-form">
+                                <div class="row collapse">
+                                    <div class="large-8 small-9 columns">
+                                        <input type="text" placeholder="Indiquez le nom d'un livre" size="50">
+                                    </div>
+                                    <div class="large-4 small-3 columns">
+                                        <a href="#" class="alert button expand">Rechercher</a>
+                                    </div>
+                                </div>
+                            </li>
                             <li class="divider"></li>
                             <li class="has-dropdown">
                                 <a href="#">Genre</a>
@@ -97,51 +109,33 @@
 
                 <div class="row">
 
-                    <div class="large-12 columns">
-                        <div class="panel">
-                            <div class="row">
+                    <?php
+                    for($i = 1;$i < 4;$i++){
 
-                                <div class="large-2 small-6 columns">
-                                    <img src="http://placehold.it/300x300&text=Site Owner">
-                                </div>
+                        echo "<div class='large-12 columns'>
+                                <div class='panel'>
+                                     <div class='row'>
 
-                                <div class="large-10 small-6 columns">
-                                    <strong>This Site Is Managed By<hr/></strong>
+                                        <div class='large-2 small-6 columns'>
+                                            <img src='http://placehold.it/300x300&text=Site Owner'>
+                                        </div>
 
-                                    <audio controls="controls" preload="none">
-                                        <source src="music.mp3" type="audio/mp3" />
-                                        <source src="music.aac" type="audio/aac" />
-                                        <source src="music.ogg" type="audio/ogg" />
-                                        Votre navigateur n'est pas compatible
-                                    </audio>
-                                </div>
+                                        <div class='large-10 small-6 columns'>
+                                            <strong>Donjon de Naheulbeuk - SAISON ".$i."<hr/></strong>
 
-                            </div>
-                        </div>
-                    </div>
+                                            <audio controls='controls' preload='none'>
+                                                <source src='music.mp3 type='audio/mp3' />
+                                                <source src='music.aac' type='audio/aac />
+                                                <source src='music.ogg' type='audio/ogg' />
+                                            </audio>
+                                        </div>
 
-                    <div class="large-12 columns">
-                        <div class="panel">
-                            <div class="row">
+                                        </div>
+                                    </div>
+                                </div>";
+                    }
+                    ?>
 
-                                <div class="large-2 small-6 columns">
-                                    <img src="http://placehold.it/300x300&text=Site Owner">
-                                </div>
-
-                                <div class="large-10 small-6 columns">
-                                    <strong>This Site Is Managed By<hr/></strong>
-
-                                    <audio controls="controls" preload="none">
-                                        <source src="music.mp3" type="audio/mp3" />
-                                        <source src="music.aac" type="audio/aac" />
-                                        <source src="music.ogg" type="audio/ogg" />
-                                        Votre navigateur n'est pas compatible
-                                    </audio>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
 
 
 
