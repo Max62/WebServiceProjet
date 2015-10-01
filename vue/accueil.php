@@ -1,7 +1,4 @@
 <?php include_once 'struct/header.php'; ?>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
 
 <body>
 <div class="row">
@@ -43,27 +40,22 @@
                             <li class="has-dropdown">
                                 <a href="#">Genre</a>
                                 <ul class="dropdown">
-                                    <li><label>Section Name</label></li>
-                                    <li class="has-dropdown">
-                                        <a href="#" class="">Has Dropdown, Level 1</a>
-                                        <ul class="dropdown">
-                                            <li><a href="#">Dropdown Options</a></li>
-                                            <li><a href="#">Dropdown Options</a></li>
-                                            <li><a href="#">Level 2</a></li>
-                                            <li><a href="#">Subdropdown Option</a></li>
-                                            <li><a href="#">Subdropdown Option</a></li>
-                                            <li><a href="#">Subdropdown Option</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Dropdown Option</a></li>
-                                    <li><a href="#">Dropdown Option</a></li>
-                                    <li class="divider"></li>
-                                    <li><label>Section Name</label></li>
-                                    <li><a href="#">Dropdown Option</a></li>
-                                    <li><a href="#">Dropdown Option</a></li>
-                                    <li><a href="#">Dropdown Option</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">See all â†’</a></li>
+                                    <?php
+                                    try {
+                                    $bdd = new PDO('mysql:host=localhost;dbname=projetwebservice', 'root', '');
+                                    } catch (Exception $e) {
+                                    die('Erreur : ' . $e->getMessage());
+                                    }
+
+                                    $sql = "SELECT * FROM type";
+
+                                    $res = $bdd->query($sql);
+                                    $res->setFetchMode(PDO::FETCH_OBJ);
+
+                                    while($genre = $res->fetch()){
+                                        echo '<li>'.$genre->nameType.'</li>';
+                                    }
+                                    ?>
                                 </ul>
                             </li>
                             <li class="divider"></li>
@@ -91,7 +83,7 @@
 
                 <div class="hide-for-small panel">
                     <h3>FREE BOOK</h3>
-                    <h5 class="subheader">Un petit moment détente ? Venez écouter un de nos livres audio</h5>
+                    <h5 class="subheader">Un petit moment detente ? Venez ecouter un de nos livres audio</h5>
                 </div>
 
                 <a href="#">
@@ -126,7 +118,7 @@
                                             <strong>Donjon de Naheulbeuk - SAISON ".$i."<hr/></strong>
 
                                             <audio controls='controls' preload='none'>
-                                                <source src='/WebServiceProjet/ressource/chansondutavernier.mp3' type='audio/mp3' />
+                                                <source src='/WebServiceProjet/ressource/donjon-saison5resume.mp3' type='audio/mp3' />
                                             </audio>
                                         </div>
 
