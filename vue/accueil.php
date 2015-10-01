@@ -10,7 +10,7 @@
 
                 <nav class="top-bar" data-topbar>
                     <ul class="title-area">
-
+<!--
                         <li class="name">
                             <h1>
                                 <a href="#">
@@ -18,7 +18,7 @@
                                 </a>
                             </h1>
                         </li>
-
+-->
                         <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
                     </ul>
 
@@ -53,13 +53,19 @@
                                     $res->setFetchMode(PDO::FETCH_OBJ);
 
                                     while($genre = $res->fetch()){
-                                        echo '<li>'.$genre->nameType.'</li>';
+                                        echo '<li><a href="#">'.$genre->nameType.'</a></li>';
                                     }
                                     ?>
                                 </ul>
                             </li>
                             <li class="divider"></li>
                             <li><a href="#">Mon Compte</a></li>
+                            <li class="has-dropdown">
+                                <a href="#">Ajouter</a>
+                                <ul class="dropdown">
+                                    <li><a href="/WebServiceProjet/vue/ajoutLivreAudio.php">Un livre</a></li>
+                                    <li><a href="/WebServiceProjet/vue/ajoutGenreLivre.php">Un genre</a></li>
+                                </ul>
                             <li class="divider"></li>
                             <li>
                                 <a href="#">Logout</a>
@@ -88,7 +94,7 @@
 
                 <a href="#">
                     <div class="panel callout radius">
-                        <h6>99  items in your cart</h6>
+                        <h6> </h6>
             </div>
                 </a>
 
