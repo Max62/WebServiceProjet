@@ -17,6 +17,4 @@ and open the template in the editor.
         <script src="../asset/js/vendor/modernizr.js"></script>
 
     </head>
-    <body>
-        <br/>
-        <br/>
+
