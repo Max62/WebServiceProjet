@@ -14,7 +14,9 @@ function loadTypes(){
         url : "/WebServiceProjet/controller/GenreController.php",
         success: function(response) {
             var obj = jQuery.parseJSON(response);
-
+            $('#mesGenres .dropdown').on('click', '.itemDelete', function() {
+                $(this).closest('li').remove();
+            });
             for(var i = 0; i < obj.length;i++){
                 $("#mesGenres .dropdown").append("<li><a href='#'>" + obj[i].nametype + "</a></li>");
             }
