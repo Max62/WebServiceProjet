@@ -25,20 +25,16 @@ function loadTypes(){
 };
 
 function loadBooks(){
-
+    alert("ko");
     $.ajax({
         method: "GET",
-        url : "/WebServiceProjet/controller/GenreController.php",
+        url : "/WebServiceProjet/controller/BooksController.php",
         success: function(response) {
+            alert(response);
             var obj = jQuery.parseJSON(response);
-
-            for(var i = 0; i < obj.length;i++){
-                $("#mesGenres .dropdown").append("<li><a href='#'>" + obj[i].nametype + "</a></li>");
-            }
         }
     });
 };
-
 
 $( "#searchBox" ).onkeyup(function( event ) {
     alert($( "#searchBox" ).val());
