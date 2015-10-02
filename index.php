@@ -75,7 +75,6 @@ if(isset($_POST['client'])){
                 data: { login: $("#monLogin").val(), password: $("#monPwd").val() },
                 success: function(response) {
                     if (jQuery.parseJSON(response).mail.indexOf("@") > -1){
-                        alert(jQuery.parseJSON(response).mail);
                         $.ajax({
                             type: "POST",
                             url: "/WebServiceProjet/vue/accueil.php",
@@ -84,8 +83,6 @@ if(isset($_POST['client'])){
                                 $('body').replaceWith(data);
                             }
                         });
-
-
                         };
                     }
                 });
