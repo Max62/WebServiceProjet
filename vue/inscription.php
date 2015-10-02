@@ -35,7 +35,7 @@ if(isset($_POST['client'])){
                                     <span class="prefix">Nom</span>
                                 </div>
                                 <div class="large-9 columns">
-                                    <input type="text" required="required" placeholder="Nom">
+                                    <input type="text" required="required" placeholder="Nom" id="lastname">
                                 </div>
                             </div>
                         </div>
@@ -46,7 +46,7 @@ if(isset($_POST['client'])){
                                     <span class="prefix">Prénom</span>
                                 </div>
                                 <div class="large-9 columns">
-                                    <input type="text" required="required" placeholder="Prénom">
+                                    <input type="text" required="required" placeholder="Prénom" id="firstname">
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@ if(isset($_POST['client'])){
                                     <span class="prefix">Email</span>
                                 </div>
                                 <div class="large-9 columns">
-                                    <input type="text" required="required" placeholder="Email">
+                                    <input type="text" required="required" placeholder="Email" id="email">
                                 </div>
                             </div>
                         </div>
@@ -68,7 +68,7 @@ if(isset($_POST['client'])){
                                         <span class="prefix">Login</span>
                                 </div>
                                 <div class="large-9 columns">
-                                    <input type="text" required="required" placeholder="Login">
+                                    <input type="text" required="required" placeholder="Login" id="login">
                                 </div>
                             </div>
                         </div>
@@ -79,7 +79,7 @@ if(isset($_POST['client'])){
                                     <span class="prefix">Mot de passe</span>
                                 </div>
                                 <div class="large-9 columns">
-                                    <input type="password" required="required" placeholder="Mot de passe">
+                                    <input type="password" required="required" placeholder="Mot de passe" id="password">
                                 </div>
                             </div>
                         </div>
@@ -90,13 +90,13 @@ if(isset($_POST['client'])){
                                     <span class="prefix">Confirmer le mot de passe</span>
                                 </div>
                                 <div class="large-9 columns">
-                                    <input type="password" required="required" placeholder="Confirmer le mot de passe">
+                                    <input type="password" required="required" placeholder="Confirmer le mot de passe"  id="p2">
                                 </div>
                             </div>
                         </div>
 
                         <div class="large-12 columns">
-                            <input class="button radius success right" type="submit" value="S'inscrire">
+                            <input class="button radius success right" type="submit" value="S'inscrire" id="Inscription">
                         </div>
                     </div>
                 </fieldset>
@@ -105,7 +105,31 @@ if(isset($_POST['client'])){
         <div class="large-12 columns">
             <a href="/WebServiceProjet"><button class="button radius left" value="back">Retour</button></a>
         </div>
+
     </div>
+
+    <script src="/WebServiceProjet/asset/js/vendor/jquery.js"></script>
+    <script src="/WebServiceProjet/asset/js/foundation.min.js"></script>
+    <script>
+
+        $( "#Inscription" ).click(function() {
+
+            if($("#password").val().trim() == $("#p2").val().trim()){
+                $.ajax({
+                    method: "PUT",
+                    url : "/WebServiceProjet/controller/UserController.php",
+                    data: { login: $("#login").val(), password: $("#password").val(), email: $("#email").val(),firstname : $("#firstname").val(),lastname : $("#lastname").val()},
+                    success: function(response) {
+                            $("body").append("<p color:'green;'>Utilisateur ajouté ! </p>");
+                    }
+                });
+            }else {
+                alert("Veuillez saisir le même mot de passe 2 fois ! ;)");
+            }
+        });
+
+    </script>
+
 
 <?php
 $ds = DIRECTORY_SEPARATOR;

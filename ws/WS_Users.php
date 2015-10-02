@@ -27,7 +27,7 @@ class WS_Users implements IWebServiciable {
     }
 
     public function doPut() {
-
+        return execReqWithoutResult("INSERT INTO users(lastname, firstname, mail, login, password) VALUES ('".$this->requestParams['lastname']."','".$this->requestParams['firstname']."','".$this->requestParams['email']."',''".$this->requestParams['login']."','".$this->requestParams['password']."')");
     }
 
     public function doRequest() {

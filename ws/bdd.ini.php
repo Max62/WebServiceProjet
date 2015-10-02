@@ -74,4 +74,23 @@ function returnOneArray($var){
             exit();
         }
 }
+
+function execReqWithoutResult($var){
+      try{
+            $pdo = getConnexion();
+
+            $res = $pdo->prepare($var);
+
+            $res->execute();
+
+            $res->closeCursor();
+
+            return "ok" ;
+        }
+        catch(Exception $e)
+        {
+            $ret = 'error';
+            return $ret;
+        }
+}
 ?>

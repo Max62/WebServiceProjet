@@ -5,10 +5,25 @@ require_once '../ws/WS_Securities.php';
 
 //GEstion d'erreur
 $className = "WS_Users";
-$array = [
-    "login" => $_POST['login'],
-    "password" => $_POST['password']
-];
+
+switch ($_SERVER['REQUEST_METHOD']) {
+    case "POST":
+        $array = [
+            "login" => $_POST['login'],
+            "password" => $_POST['password']
+        ];
+        break;
+    case "PUT":
+        parse_str(file_get_contents("php://input"),$post_vars);
+        $array = [
+            "login" => $post_vars['login'],
+            "firstname" => $post_vars['firstname'],
+            "lastname" => $post_vars['lastname'],
+            "email" => $post_vars['email'],
+            "password" => $post_vars['password']
+        ];
+        break;
+}
 
 $ws_instance = new $className($array);
 $ws_security = new WS_Securities();
