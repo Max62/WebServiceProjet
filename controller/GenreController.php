@@ -15,7 +15,9 @@ $ws_security = new WS_Securities();
 //    if(!$ws_security->isAuth())
 //        return 'error';
 
-$ws_response = $ws_instance->doGet();
+$method = "doGet";
 
-$_SESSION["monUserCo"] = json_encode($ws_response);
+$ws_response = $ws_instance->$method();
+
+
 echo json_encode($ws_response);

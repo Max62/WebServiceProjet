@@ -21,6 +21,5 @@ $method = "do".strtoupper($_SERVER['REQUEST_METHOD']);
 
 $ws_response = $ws_instance->$method();
 
-$_SESSION["monUserCo"] = json_encode($ws_response);
 echo json_encode($ws_response);
 

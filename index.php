@@ -1,3 +1,18 @@
+<?php
+
+
+if(!isset($_POST['client'])){
+
+    if(!isset($_POST['logout']) && $_POST["logout"] == true) {
+            session_unset();
+            session_destroy();
+            header('Location: /WebServiceProjet/index.php');
+    }else{
+        header('Location: /WebServiceProjet/vue/accueil.php');
+    }
+}
+?>
+
 <html class="no-js" lang="fr" >
 
 <head>
@@ -66,7 +81,8 @@
                 url : "/WebServiceProjet/controller/UserController.php",
                 data: { login: $("#monLogin").val(), password: $("#monPwd").val() },
                 success: function(response) {
-                    if (jQuery.parseJSON(response).mail != ""){
+                    if (jQuery.parseJSON(response).mail.indexOf("@") > -1){
+                        alert(jQuery.parseJSON(response).mail);
                         $.ajax({
                             type: "POST",
                             url: "/WebServiceProjet/vue/accueil.php",

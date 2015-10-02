@@ -24,7 +24,7 @@ if(isset($_POST['client'])){
                         <li class="name">
                             <h1>
                                 <a href="#">
-                                    <?php echo $_SESSION['monUserCo']['firstName']." ".$_SESSION['monUserCo']['lastName']; ?>
+                                    <?php echo $_SESSION['monUserCo']['firstname']." ".$_SESSION['monUserCo']['lastname']; ?>
                                 </a>
                             </h1>
                         </li>
@@ -38,19 +38,15 @@ if(isset($_POST['client'])){
 
                             <li class="has-form">
                                 <div class="row collapse">
-                                    <div class="large-8 small-9 columns">
-                                        <input type="text" placeholder="Indiquez le nom d'un livre" size="40">
-                                    </div>
-                                    <div class="large-4 small-3 columns">
-                                        <a href="#" class="alert button expand">Rechercher</a>
-                                    </div>
+                                    <!--<div class="large-8 small-9 columns">-->
+                                        <input type="text" placeholder="Indiquez le nom d'un livre" size="50" id="searchBox">
+                                    <!--</div>-->
                                 </div>
                             </li>
                             <li class="divider"></li>
-                            <li class="has-dropdown">
+                            <li class="has-dropdown" id="mesGenres">
                                 <a href="#">Genre</a>
                                 <ul class="dropdown">
-
                                 </ul>
                             </li>
                             <li class="has-dropdown">
@@ -64,7 +60,7 @@ if(isset($_POST['client'])){
                             <li><a href="#">Mon Compte</a></li>
                             <li class="divider"></li>
                             <li>
-                                <a href="#">Logout</a>
+                                <a href="/WebServiceProjet/index.php?logout=true">Logout</a>
                             </li>
                         </ul>
                     </section>
@@ -155,34 +151,4 @@ if(isset($_POST['client'])){
 
 </body>
 
-<script>
-     <script>
-        $(document).foundation();
-
-        $( "#btnCnx" ).click(function() {
-            $.ajax({
-                method: "POST",
-                url : "/WebServiceProjet/controller/UserController.php",
-                data: { login: $("#monLogin").val(), password: $("#monPwd").val() },
-                success: function(response) {
-                    if (jQuery.parseJSON(response).mail != ""){
-                        $.ajax({
-                            type: "POST",
-                            url: "/WebServiceProjet/vue/accueil.php",
-                            data: { client: jQuery.parseJSON(response)},
-                            success:function(data){
-                                $('body').replaceWith(data);
-                            }
-                        });
-
-
-                        };
-                    }
-                });
-            });
-
-    </script>
-
-
-</script>
 <?php include_once 'struct/footer.php'; ?>

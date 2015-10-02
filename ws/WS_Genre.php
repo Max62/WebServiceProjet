@@ -4,7 +4,7 @@ require_once '../ws/IWebServiciable.php';
 require_once '../ws/bdd.ini.php';
 
 
-class WS_Users implements IWebServiciable {
+class WS_Genre implements IWebServiciable {
 
     public $requestParams;
 
@@ -23,15 +23,11 @@ class WS_Users implements IWebServiciable {
             $pdo->beginTransaction();
 
             $sql = "SELECT idtype,nametype FROM type";
+
             $res = $pdo->query($sql);
 
             if ($res) {
-                echo "mesGenres";
-                echo "<pre>";
-                print_r($res);
-                echo "</pre>";
-                $row = $res->fetch(PDO::FETCH_ASSOC);
-                return $row;
+                return $res->fetchAll();
             }
 
         }
