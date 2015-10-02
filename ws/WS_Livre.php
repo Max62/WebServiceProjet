@@ -1,6 +1,7 @@
 <?php
 
 require_once '../ws/IWebServiciable.php';
+require_once '../ws/bdd.ini.php';
 
 
 class WS_Livre implements IWebServiciable {
@@ -16,7 +17,7 @@ class WS_Livre implements IWebServiciable {
     }
 
     public function doGet() {
-
+       return returnOneArray("SELECT idtype,nametype FROM Books");
     }
 
     public function doPost() {
