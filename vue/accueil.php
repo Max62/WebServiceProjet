@@ -1,8 +1,20 @@
+<?php
+session_start();
+if(isset($_POST['client'])){
+    $_SESSION['monUserCo'] = $_POST['client'];
+}
+
+if(isset($_POST['logout'])){
+    if ($_POST['logout'] == true){
+        session_unset();
+        session_destroy();
+        header('Location: /WebServiceProjet/index.php');
+    }
+}
+?>
 <?php include_once 'struct/header.php'; ?>
 
 <body>
-
-
 
 <div class="row">
     <div class="large-12 columns">

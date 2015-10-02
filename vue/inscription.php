@@ -1,7 +1,23 @@
 <?php
-$ds = DIRECTORY_SEPARATOR;
-$base_dir = realpath(dirname(__FILE__)  . $ds . '..') . $ds;
-require_once("{$base_dir}vue{$ds}struct{$ds}header.php"); ?>
+if(isset($_POST['client'])){
+    header('Location: /WebServiceProjet/vue/accueil.php');
+}
+?>
+
+    <html class="no-js" lang="fr" >
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Projet WebService Audio</title>
+
+        <link rel="stylesheet" href="/WebServiceProjet/asset/css/normalize.css">
+        <link rel="stylesheet" href="/WebServiceProjet/asset/css/foundation.css">
+
+
+        <script src="../asset/js/vendor/modernizr.js"></script>
+
+    </head>
 
     <div class="row">
         <div class="large-12 columns">
@@ -94,4 +110,4 @@ require_once("{$base_dir}vue{$ds}struct{$ds}header.php"); ?>
 <?php
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__)  . $ds . '..') . $ds;
-require_once("{$base_dir}vue{$ds}struct{$ds}footer.php"); ?>
+require_once("inscription.php"); ?>

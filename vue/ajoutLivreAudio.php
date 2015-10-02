@@ -5,6 +5,22 @@
  * Date: 01/10/2015
  * Time: 17:18
  */
+
+session_start();
+
+if(isset($_POST['client'])){
+    $_SESSION['monUserCo'] = $_POST['client'];
+}
+
+if(isset($_POST['logout'])){
+    if ($_POST['logout'] == true){
+        session_unset();
+        session_destroy();
+        header('Location: /WebServiceProjet/index.php');
+    }
+}
+
+
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__)  . $ds . '..') . $ds;
 require_once("{$base_dir}vue{$ds}struct{$ds}header.php"); ?>

@@ -4,20 +4,6 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<?php
-session_start();
-if(isset($_POST['client'])){
-    $_SESSION['monUserCo'] = $_POST['client'];
-}
-
-if(isset($_POST['logout'])){
-    if ($_POST['logout'] == true){
-        session_unset();
-        session_destroy();
-        header('Location: /WebServiceProjet/index.php');
-    }
-}
-?>
 
 <html class="no-js" lang="fr" >
     <head>
@@ -86,4 +72,3 @@ if(isset($_POST['logout'])){
 
         </div>
     </div>
-
