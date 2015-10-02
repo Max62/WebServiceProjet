@@ -1,5 +1,3 @@
-
-
 <?php include_once 'struct/header.php'; ?>
 
 <body>
@@ -38,31 +36,6 @@
             <div class="large-8 columns">
 
                 <div class="row">
-
-                    <?php
-                    for($i = 1;$i < 4;$i++){
-
-                        echo "<div class='large-12 columns'>
-                                <div class='panel'>
-                                     <div class='row'>
-
-                                        <div class='large-2 small-6 columns'>
-                                            <img src='/WebServiceProjet/ressource/listen.jpeg'>
-                                        </div>
-
-                                        <div class='large-10 small-6 columns'>
-                                            <strong>Donjon de Naheulbeuk - SAISON ".$i."<hr/></strong>
-
-                                            <audio controls='controls' preload='none'>
-                                                <source src='/WebServiceProjet/ressource/donjon-saison5resume.mp3' type='audio/mp3' />
-                                            </audio>
-                                        </div>
-
-                                        </div>
-                                    </div>
-                                </div>";
-                    }
-                    ?>
 
 
 

@@ -17,8 +17,7 @@ class WS_Livre implements IWebServiciable {
     }
 
     public function doGet() {
-        echo returnOneArray("SELECT idBook,nameBook,yearBook,author,urlBook FROM Book");
-       //return returnOneArray("SELECT idBook,name,year,author,urlBook FROM Book");
+        return returnOneArray("SELECT idbook,namebook,yearbook,author,urlbook FROM book");
     }
 
     public function doPost() {
