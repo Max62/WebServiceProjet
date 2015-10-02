@@ -1,15 +1,8 @@
 <?php
 
 
-if(!isset($_POST['client'])){
-
-    if(!isset($_POST['logout']) && $_POST["logout"] == true) {
-            session_unset();
-            session_destroy();
-            header('Location: /WebServiceProjet/index.php');
-    }else{
+if(isset($_POST['client'])){
         header('Location: /WebServiceProjet/vue/accueil.php');
-    }
 }
 ?>
 
