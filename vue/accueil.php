@@ -4,8 +4,6 @@ session_start();
 if(isset($_POST['client'])){
     $_SESSION['monUserCo'] = $_POST['client'];
 }
-
-echo "lol";
 ?>
 
 <?php include_once 'struct/header.php'; ?>
