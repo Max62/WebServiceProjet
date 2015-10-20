@@ -14,7 +14,7 @@
 			if (!isset($_SESSION[PARAM_LOGGED]) || $_SESSION[PARAM_LOGGED] == 0)
 				self::ThrowAccessDenied();
 		}
-		// Commentaire
+		// Commentaires
 		// Stop the request and send an access denied message to the client.
 		public static function ThrowAccessDenied()
 		{

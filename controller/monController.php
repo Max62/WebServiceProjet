@@ -1,5 +1,5 @@
 <?php
-	// Commentaire
+	// Commentaires
 	include_once('helper.php');
 
 	const PATH_WEBSERVICES = 'ws';
