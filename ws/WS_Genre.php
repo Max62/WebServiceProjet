@@ -2,14 +2,17 @@
 
 require_once '../ws/IWebServiciable.php';
 require_once '../ws/bdd.ini.php';
+require_once '../ws/WS_Genre.php';
+
+
 
 
 class WS_Genre implements IWebServiciable {
 
-    public $requestParams;
+    const GET_GENRES = 'getAllGenres';
 
-    function __construct($requestParams) {
-        $this->requestParams = $requestParams;
+    function __construct() {
+
     }
 
     public function doDelete() {
@@ -17,7 +20,19 @@ class WS_Genre implements IWebServiciable {
     }
 
     public function doGet() {
-        return returnOneArray("SELECT idtype,nametype FROM type");
+
+
+      if (!isset($_GET['action']))
+        Helper::ThrowAccessDenied();
+
+      switch ($_GET['action']){
+            case GET_GENRES:
+              return returnOneArray("SELECT idtype,nametype FROM type");
+            default:
+              Helper::ThrowAccessDenied();
+              break;
+      }
+
     }
 
     public function doPost() {
