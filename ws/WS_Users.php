@@ -2,14 +2,15 @@
 
 require_once '../ws/IWebServiciable.php';
 require_once '../ws/bdd.ini.php';
+require_once '../ws/WS_Users.php';
+require_once '../ws/WS_Securities.php';
+
 
 
 class WS_Users implements IWebServiciable {
 
-    public $requestParams;
+    function __construct() {
 
-    function __construct($requestParams) {
-        $this->requestParams = $requestParams;
     }
 
     public function doDelete() {
@@ -21,13 +22,30 @@ class WS_Users implements IWebServiciable {
     }
 
     public function doPost() {
-        $sql = "SELECT lastname,firstname,mail,login,password FROM Users WHERE login = '".$this->requestParams['login']."' AND password ='".$this->requestParams['password']."'";
+
+      $array = [
+          "login" => $_POST['login'],
+          "password" => $_POST['password']
+      ];
+
+        $sql = "SELECT lastname,firstname,mail,login,password FROM Users WHERE login = '".$array['login']."' AND password ='".$array['password']."'";
 
         return returnOneLine($sql);
     }
 
     public function doPut() {
-        return execReqWithoutResult("INSERT INTO users(lastname, firstname, mail, login, password) VALUES ('".$this->requestParams['lastname']."','".$this->requestParams['firstname']."','".$this->requestParams['email']."',''".$this->requestParams['login']."','".$this->requestParams['password']."')");
+
+      parse_str(file_get_contents("php://input"),$post_vars);
+      $array = [
+          "login" => $post_vars['login'],
+          "firstname" => $post_vars['firstname'],
+          "lastname" => $post_vars['lastname'],
+          "email" => $post_vars['email'],
+          "password" => $post_vars['password']
+      ];
+
+
+        return execReqWithoutResult("INSERT INTO users(lastname, firstname, mail, login, password) VALUES ('".$array['lastname']."','".$array['firstname']."','".$array['email']."',''".$array['login']."','".$array['password']."')");
     }
 
     public function doRequest() {
@@ -42,6 +60,6 @@ class WS_Users implements IWebServiciable {
     public function doNeedAuth() {
         return true;
     }
-} 
+}
 
 ?>

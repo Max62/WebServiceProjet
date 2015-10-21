@@ -15,10 +15,14 @@
 	if (!file_exists($servicePath))
 		Helper::ThrowAccessDenied();
 
+
+
+		$method = "do".strtoupper($_SERVER['REQUEST_METHOD']);
+
 	// We create and execute the service.
 	require_once($servicePath);
 	$service = new $serviceName();
-	$result = $service->DoGet();
+	$result = $service->$method;
 
 	// At the end, we return the result.
 	if ($result !== null)
