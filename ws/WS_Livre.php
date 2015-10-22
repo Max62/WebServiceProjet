@@ -6,9 +6,9 @@ require_once '../ws/WS_Livre.php';
 require_once '../ws/WS_Securities.php';
 
   const GET_ALL_BOOKS = 'selectAllBooks';
-  const GET_TOTAL_BOOKS = 'getTotalBooks';
   const GET_FUNCTION_OF_TERMS = 'searchByName';
   const addBook = "addBook";
+  const DELETE_READING_USER = 'deleteRowReading';
 
   const SAVE_TIME_POSITION = 'setPositionTimeOfABook';
 
@@ -25,16 +25,11 @@ class WS_Livre implements IWebServiciable {
 
         switch ($_POST['action']){
             case GET_ALL_BOOKS:
-                //return returnOneArray("SELECT idbook,namebook,yearbook,author,urlbook FROM book");
-                return returnOneArray("SELECT book.idbook,namebook,yearbook,author,urlbook,readbook.timePosition FROM book LEFT JOIN readbook ON readbook.idBook = book.idBook AND readbook.login = '".$_POST['login']."'");
-            break;
-
-            case GET_TOTAL_BOOKS:
-                return returnOneArray("SELECT COUNT(*) as cpt FROM book");
+                return returnOneArray("SELECT book.idbook,namebook,yearbook,author,urlbook,IFNULL(readbook.timePosition,0) as timePosition FROM book LEFT JOIN readbook ON readbook.idBook = book.idBook AND readbook.login = '".$_POST['login']."'");
             break;
 
             case GET_FUNCTION_OF_TERMS:
-                return returnOneArray("SELECT idbook,namebook,yearbook,author,urlbook FROM book WHERE namebook LIKE '".$_POST['searchBoxValue']."%'");
+                return returnOneArray("SELECT book.idbook,namebook,yearbook,author,urlbook,IFNULL(readbook.timePosition,0) as timePosition FROM book LEFT JOIN readbook ON readbook.idBook = book.idBook AND readbook.login = '".$_POST['login']."' WHERE namebook LIKE '".$_POST['searchBoxValue']."%'");
             break;
 
             case addBook:
@@ -56,16 +51,18 @@ class WS_Livre implements IWebServiciable {
 
             case SAVE_TIME_POSITION:
 
-              //$_POST['TimePosition'];
-
             $result = returnOneLine("SELECT IFNULL(COUNT(*),0) as existe FROM readbook WHERE idBook=".$_POST['idBook']." AND login='".$_POST['login']."'")['existe'];
 
             if ($result == 0)
               return execReqWithoutResult("INSERT INTO readbook(timePosition, login, idBook) VALUES ('".$_POST['TimePosition']."','".$_POST['login']."',".$_POST['idBook'].")");
 
             if ($result == 1)
-              return "le glaude";
+              return execReqWithoutResult("UPDATE readbook SET TimePosition='".$_POST['TimePosition']."' WHERE login='".$_POST['login']."' AND idBook =".$_POST['idBook']."");
 
+            break;
+
+            case DELETE_READING_USER:
+              return execReqWithoutResult("DELETE FROM readbook WHERE login='".$_POST['login']."' AND idBook=".$_POST['idb']);
             break;
 
             default:

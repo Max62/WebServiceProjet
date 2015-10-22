@@ -50,6 +50,17 @@ p.title {
     margin : 1em 0;
 }
 
+.green{
+  background-color: green;
+  color:white;
+}
+
+.red{
+  background-color: red;
+  color:white;
+}
+
+
 .control{
     display: inline-block;
     margin : .5em;

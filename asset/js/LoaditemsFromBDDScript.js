@@ -3,7 +3,6 @@
  */
 $( document ).ready(function() {
    loadTypes();
-   totalBooks();
    loadBooks();
 });
 
@@ -26,19 +25,6 @@ function loadTypes(){
     });
 };
 
-function totalBooks(){
-
-    $.ajax({
-        method: "POST",
-        url : "/WebServiceProjet/controller/monController.php",
-        data: { ws: 'livre', action : 'getTotalBooks'},
-        success: function(response) {
-            $('.panel.callout.radius').html('<h6><b>' + jQuery.parseJSON(response)[0].cpt + ' Livre(s) disponible(s) !</b></h6');
-        }
-    });
-}
-
-
 function loadBooks(){
     $.ajax({
         method: "POST",
@@ -53,7 +39,7 @@ function loadBooks(){
                 "<div class='large-12 columns'>" +
                     "<div class='panel'>" +
                       "<div class='row'>" +
-//SELECT book.idbook,namebook,yearbook,author,urlbook,readbook.timePosition
+
                         "<div class='large-2 small-6 columns'>" +
                         "<img src='/WebServiceProjet/ressource/listen.jpeg'>" +
                         "</div>" +
@@ -61,7 +47,8 @@ function loadBooks(){
                         "<div class='large-10 small-6 columns'>" +
                              "<strong>" + obj[i].namebook + " - " + obj[i].yearbook + " par " + obj[i].author + "<hr/></strong>" +
 
-                          //  "<audio controls='controls' preload='none'>" +
+
+                          "<input type='hidden' id='audioPosition"+obj[i].idbook+"' value='"+ obj[i].timePosition +"' />" +
                           "<audio src='" + obj[i].urlbook + "' type='audio/mp3' id='"+obj[i].idbook+"'/>" +
                           "<button type='button'  name='play' value='Play' class='fi-play' onclick='play("+obj[i].idbook+")'>"+
                           "   PLAY" +
@@ -73,26 +60,50 @@ function loadBooks(){
                           "</button>" +
                           "<span>" + "    " +
                           "</span>" +
-                          "<h6 id='currentReading"+obj[i].idbook+"'></h1>"+
+                          "<h6 id='statut"+obj[i].idbook+"'></h6>"+
+                          "<h6 id='currentReading"+obj[i].idbook+"'></h6>"+
                             //"</audio>"+
                         "</div>"+
 
                     "</div>"+
                 "</div>"+
                 "</div>").hide().fadeIn("slow");
-
+                console.log(obj[i].timePosition);
                 if (obj[i].timePosition > 0){
                   $("button.fi-play").text("REPRENDRE");
-                  console.log(obj[i].timePosition + " " +i);
-                  $("audio#"+obj[i].idbook).setCurrentTime = 10;
                   $("h6#currentReading"+obj[i].idbook).text("La dernière fois vous avez écouté " + getStringTimeFromSecondes(Math.floor(obj[i].timePosition)));
                 }
+
+
+                $("audio#"+obj[i].idbook).bind('ended', function(){
+                  // done playing
+                  deleteRowInReadingDatabase(this);
+                });
             }
+            $('.panel.callout.radius').html('<h6><b>' + $(".large-8.columns").children(".row").children(".large-12.columns").length + ' Livre(s) disponible(s) !</b></h6');
+
         }
     });
 };
 
+function deleteRowInReadingDatabase(obj){
 
+  console.log(obj);
+  alert("ID " + $(obj).attr("id"));
+  $.ajax({
+      method: "POST",
+      url : "/WebServiceProjet/controller/monController.php",
+      data: { ws: 'livre', action : 'deleteRowReading', idb : $(obj).attr("id"), login : $("#IDK").val()},
+      success: function(response) {
+          loadBooks();
+          loadNextEpisode($(obj).attr("id"));
+      }
+  });
+}
+
+function loadNextEpisode(id){
+
+}
 
 $("#searchBox").keyup(function(){
   var valeureSaisie = $('#searchBox').val();
@@ -101,11 +112,12 @@ $("#searchBox").keyup(function(){
     $.ajax({
         method: "POST",
         url : "/WebServiceProjet/controller/monController.php",
-        data: { ws: 'livre', action : 'searchByName', searchBoxValue : valeureSaisie},
+        data: { ws: 'livre', action : 'searchByName', searchBoxValue : valeureSaisie, login : $("#IDK").val()},
         success: function(response) {
             var obj = jQuery.parseJSON(response);
             $($(".row ").children(".large-8").children(".row")).empty();
             for(var i = 0; i < obj.length;i++){
+
                 $($(".row ").children(".large-8").children(".row")).append("<br><br>" +
                 "<div class='large-12 columns'>" +
                     "<div class='panel'>" +
@@ -118,27 +130,41 @@ $("#searchBox").keyup(function(){
                         "<div class='large-10 small-6 columns'>" +
                              "<strong>" + obj[i].namebook + " - " + obj[i].yearbook + " par " + obj[i].author + "<hr/></strong>" +
 
-                            //"<audio controls='controls' preload='none'>" +
-                            "<audio src='" + obj[i].urlbook + "' type='audio/mp3' id='"+obj[i].idbook+"' />" +
-                            "<button type='button'  name='play' value='Play' class='fi-play' onclick='play("+obj[i].idbook+")'>"+
-                            "   PLAY" +
-                            "</button>"+
-                            "<span>" + "    " +
-                            "</span>" +
-                            "<button type='button'  name='stop' value='Stop' class='fi-stop' onclick='stop("+obj[i].idbook+")'>"+
-                            "   STOP" +
-                            "</button>" +
-                            "<span>" + "    " +
-                            "</span>" +
-                            "<h6 id='currentReading'></h1>"+
-                            //"</audio>"+
 
+                          "<input type='hidden' id='audioPosition"+obj[i].idbook+"' value='"+ obj[i].timePosition +"' />" +
+                          "<audio src='" + obj[i].urlbook + "' type='audio/mp3' id='"+obj[i].idbook+"'/>" +
+                          "<button type='button'  name='play' value='Play' class='fi-play' onclick='play("+obj[i].idbook+")'>"+
+                          "   PLAY" +
+                          "</button>"+
+                          "<span>" + "    " +
+                          "</span>" +
+                          "<button type='button'  name='stop' value='Stop' class='fi-stop' onclick='stop("+obj[i].idbook+")'>"+
+                          "   STOP" +
+                          "</button>" +
+                          "<span>" + "    " +
+                          "</span>" +
+                          "<h6 id='statut"+obj[i].idbook+"'></h6>"+
+                          "<h6 id='currentReading"+obj[i].idbook+"'></h6>"+
+                            //"</audio>"+
                         "</div>"+
 
                     "</div>"+
                 "</div>"+
                 "</div>").hide().fadeIn("slow");
+
+                if (obj[i].timePosition > 0){
+                  $("button.fi-play").text("REPRENDRE");
+                  $("h6#currentReading"+obj[i].idbook).text("La dernière fois vous avez écouté " + getStringTimeFromSecondes(Math.floor(obj[i].timePosition)));
+                }
+
+
+                $("audio#"+obj[i].idbook).bind('ended', function(){
+                  // done playing
+                  deleteRowInReadingDatabase(this);
+                });
             }
+            $('.panel.callout.radius').html('<h6><b>' + $(".large-8.columns").children(".row").children(".large-12.columns").length + ' Livre(s) disponible(s) !</b></h6');
+
         }
     });
   }else{
@@ -148,20 +174,44 @@ $("#searchBox").keyup(function(){
 });
 
 function play(id){
+  var obj = $("audio#"+id);
+  if($(obj.parent()).children('.fi-play').text().trim() == "PLAY"){
+    $(obj).parent().parent().parent(".panel").addClass("green");
+    $("#statut"+id).html("<b style='color:white'> Lecture en cours ... </b>");
+  }
+
+  if($(obj.parent()).children('.fi-play').text().trim() == "REPRENDRE"){
+    $(obj).parent().parent().parent(".panel").removeClass("red");
+    $(obj).parent().parent().parent(".panel").addClass("green");
+    $("#statut"+id).html("<b style='color:white'> Lecture en cours ... </b>");
+  }
+
   var element = document.getElementById(id);
+
+
+  if (isNaN($("#audioPosition"+id).val())){
+    element.currentTime = 0;
+  }else {
+    element.currentTime = $("#audioPosition"+id).val();
+  }
+
   element.play();
 }
 
 function stop(id){
+  var obj = $("audio#"+id);
 
+  $(obj).parent().parent().parent(".panel").addClass("red");
+  $("#statut"+id).html("<b style='color:white'> Votre livre à été mis sur pause ;) ! </b>");
   var element = document.getElementById(id);
   element.pause();
-
+  $("#audioPosition"+id).val(element.currentTime);
   if (element.currentTime > 1){
-    $($(element).parent()).children("h6").text("Vous avez écouté ce morceau pendant " + getStringTimeFromSecondes(Math.floor(element.currentTime)));
+    $($(element).parent()).children("h6#currentReading"+id).text("Vous avez écouté ce morceau pendant " + getStringTimeFromSecondes(Math.floor(element.currentTime)));
 
     enregistrerPosition(id,element.currentTime);
   }
+  $(obj.parent()).children('.fi-play').text("REPRENDRE").trim();
 }
 
 
@@ -185,11 +235,11 @@ var seconds = nbSecondes % 60;
 var chaineAretourner = "";
 
 if (hours > 0) {
-  chaineAretourner += (hours < 10 ? "0" + hours : hours) + " h ";
+  chaineAretourner += (hours < 10 ? "0" + hours : hours) + "h";
 }
 
 if (minutes > 0) {
-  chaineAretourner += (minutes < 10 ? "0" + minutes : minutes) + " min";
+  chaineAretourner += (minutes < 10 ? "0" + minutes : minutes) + "min";
 }
 
 if (seconds > 0) {
