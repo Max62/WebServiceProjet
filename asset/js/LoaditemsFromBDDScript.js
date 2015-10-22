@@ -61,9 +61,11 @@ function loadBooks(){
                         "<div class='large-10 small-6 columns'>" +
                              "<strong>" + obj[i].namebook + " - " + obj[i].yearbook + " par " + obj[i].author + "<hr/></strong>" +
 
-                            "<audio controls='controls' preload='none'>" +
-                             "<source src='" + obj[i].urlbook + "' type='audio/mp3' />" +
-                            "</audio>"+
+                          //  "<audio controls='controls' preload='none'>" +
+                          "<source src='" + obj[i].urlbook + "' type='audio/mp3' id='"+obj[i].idbook+"'/>" +
+                          "<input type='button'  name='play' value='Play' onClick='play()'>"+
+                          "<input type='button'  name='play' value='Stop'> onClick='stop()'"+
+                            //"</audio>"+
                         "</div>"+
 
                     "</div>"+
@@ -98,9 +100,11 @@ $("#searchBox").keyup(function(){
                         "<div class='large-10 small-6 columns'>" +
                              "<strong>" + obj[i].namebook + " - " + obj[i].yearbook + " par " + obj[i].author + "<hr/></strong>" +
 
-                            "<audio controls='controls' preload='none'>" +
-                             "<source src='" + obj[i].urlbook + "' type='audio/mp3' />" +
-                            "</audio>"+
+                            //"<audio controls='controls' preload='none'>" +
+                            "<source src='" + obj[i].urlbook + "' type='audio/mp3' id='"+obj[i].idbook+"'/>" +
+                            "<input type='button'  name='play' value='Play' onClick='play()'>"+
+                            "<input type='button'  name='play' value='Stop'> onClick='stop()'"+
+                            //"</audio>"+
                         "</div>"+
 
                     "</div>"+
