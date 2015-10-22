@@ -12,6 +12,9 @@ and open the template in the editor.
 
         <link rel="stylesheet" href="/WebServiceProjet/asset/css/normalize.css">
         <link rel="stylesheet" href="/WebServiceProjet/asset/css/foundation.css">
+        <link rel="stylesheet" href="/WebServiceProjet/asset/css/foundation-icons.css">
+        <link rel="stylesheet" href="/WebServiceProjet/asset/css/foundation.min.css">
+        <link rel="stylesheet" href="/WebServiceProjet/asset/css/style.css">
 
 
         <script src="/WebServiceProjet/asset/js/vendor/modernizr.js"></script>
