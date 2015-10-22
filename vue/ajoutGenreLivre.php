@@ -38,7 +38,7 @@ require_once("{$base_dir}vue{$ds}struct{$ds}header.php"); ?>
                                     <span class="prefix">Nom</span>
                                 </div>
                                 <div class="large-9 columns">
-                                    <input type="text" required="required" placeholder="nameType" id="nameType">
+                                    <input type="text" required="required" placeholder="Nom du genre" id="nameType">
                                 </div>
                             </div>
                         </div>

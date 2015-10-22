@@ -28,7 +28,7 @@ and open the template in the editor.
 
     <div class="row">
         <div class="large-12 columns">
-
+            <input type="hidden" value="<?php echo $_SESSION['monUserCo']['login'] ?>" id="IDK"/>
             <nav class="top-bar" data-topbar>
                 <ul class="title-area">
 
@@ -66,10 +66,11 @@ and open the template in the editor.
                             <ul class="dropdown">
                                 <li><a href="/WebServiceProjet/vue/ajoutLivreAudio.php">Un livre</a></li>
                                 <li><a href="/WebServiceProjet/vue/ajoutGenreLivre.php">Un genre</a></li>
+                                <li><a href="/WebServiceProjet/vue/ajoutSerie.php">Une s&eacute;rie</a></li>
                             </ul>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="#">Mon Compte</a></li>
+                        <li><a href="/WebServiceProjet/vue/monCompte.php">Mon Compte</a></li>
                         <li class="divider"></li>
                         <li>
                             <a href="/WebServiceProjet/vue/struct/logout.php">Logout</a>

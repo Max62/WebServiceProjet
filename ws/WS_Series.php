@@ -2,10 +2,10 @@
 
 require_once '../ws/IWebServiciable.php';
 require_once '../ws/bdd.ini.php';
-require_once '../ws/WS_Genre.php';
+require_once '../ws/WS_Series.php';
 
 const GET_SERIES = 'getAllSeries';
-const addSeries = 'addSeries';
+const addSerie = 'addSerie';
 
 class WS_Series implements IWebServiciable {
 
@@ -28,13 +28,11 @@ class WS_Series implements IWebServiciable {
                 $array = [
                     "nameSeries" => $_POST['nameSeries'],
                 ];
-                return execReqWithoutResult("INSERT INTO series(nameSeries) VALUES ('".$array['nameSeries']."')");
+                return execReqWithoutResult("INSERT INTO series (nameSeries) VALUES ('".$array['nameSeries']."')");
             default:
                 Helper::ThrowAccessDenied();
                 break;
         }
-
     }
 }
-
 ?>
