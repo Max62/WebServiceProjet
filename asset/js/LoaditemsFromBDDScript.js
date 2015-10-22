@@ -10,8 +10,9 @@ $( document ).ready(function() {
 function loadTypes(){
 
     $.ajax({
-        method: "GET",
-        url : "/WebServiceProjet/controller/monController.php?ws=genre&action=getAllGenres",
+        method: "POST",
+        url : "/WebServiceProjet/controller/monController.php",
+        data: { ws: 'genre', action : 'getAllGenres'},
         success: function(response) {
             var obj = jQuery.parseJSON(response);
             $('#mesGenres .dropdown').on('click', '.itemDelete', function() {
@@ -26,8 +27,9 @@ function loadTypes(){
 
 function loadBooks(){
     $.ajax({
-        method: "GET",
-        url : "/WebServiceProjet/controller/monController.php?ws=livre&action=selectAllBooks",
+        method: "POST",
+        url : "/WebServiceProjet/controller/monController.php",
+        data: { ws: 'livre', action : 'selectAllBooks'},
         success: function(response) {
             var obj = jQuery.parseJSON(response);
 
@@ -60,5 +62,3 @@ function loadBooks(){
 $( "#searchBox" ).onkeyup(function( event ) {
     alert($( "#searchBox" ).val());
 });
-
-
