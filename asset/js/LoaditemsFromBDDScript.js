@@ -39,21 +39,33 @@ function totalBooks(){
 }
 
 
-
 function loadBooks(){
+  var buttonString ="";
     $.ajax({
         method: "POST",
         url : "/WebServiceProjet/controller/monController.php",
-        data: { ws: 'livre', action : 'selectAllBooks'},
+        data: { ws: 'livre', action : 'selectAllBooks', login : $("#IDK").val()},
         success: function(response) {
             var obj = jQuery.parseJSON(response);
             $($(".row ").children(".large-8").children(".row")).empty();
             for(var i = 0; i < obj.length;i++){
+
+              if (obj[i].timePosition > 0){
+                buttonString = "<button type='button'  name='play' value='Play' class='fi-play' onclick='play("+obj[i].idbook+")'>"+
+              "   REPRENDRE" +
+              "</button>";
+            }else{
+              buttonString="<button type='button'  name='play' value='Play' class='fi-play' onclick='play("+obj[i].idbook+")'>"+
+              "   PLAY" +
+              "</button>";
+            }
+
+
                 $($(".row ").children(".large-8").children(".row")).append("<br><br>" +
                 "<div class='large-12 columns'>" +
                     "<div class='panel'>" +
                       "<div class='row'>" +
-
+//SELECT book.idbook,namebook,yearbook,author,urlbook,readbook.timePosition
                         "<div class='large-2 small-6 columns'>" +
                         "<img src='/WebServiceProjet/ressource/listen.jpeg'>" +
                         "</div>" +
@@ -80,6 +92,11 @@ function loadBooks(){
                     "</div>"+
                 "</div>"+
                 "</div>").hide().fadeIn("slow");
+
+                if (obj[i].timePosition > 0){
+                  $("button.fi-play").text("REPRENDRE");
+                  $("audio#"+obj[i].idbook).currentTime = obj[i].timePosition;
+                }
             }
         }
     });
@@ -162,7 +179,7 @@ function enregistrerPosition(idBook,TimeOfPosition){
       url : "/WebServiceProjet/controller/monController.php",
       data: { ws: 'livre', action : 'setPositionTimeOfABook', idBook : idBook, TimePosition : TimeOfPosition, login : $("#IDK").val() },
       success: function(response) {
-          alert(response);
+          console.log(response);
       }
   });
 }

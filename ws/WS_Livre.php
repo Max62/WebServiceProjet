@@ -25,7 +25,8 @@ class WS_Livre implements IWebServiciable {
 
         switch ($_POST['action']){
             case GET_ALL_BOOKS:
-                return returnOneArray("SELECT idbook,namebook,yearbook,author,urlbook FROM book");
+                //return returnOneArray("SELECT idbook,namebook,yearbook,author,urlbook FROM book");
+                return returnOneArray("SELECT book.idbook,namebook,yearbook,author,urlbook,readbook.timePosition FROM book LEFT JOIN readbook ON readbook.idBook = book.idBook AND readbook.login = '".$_POST['login']."'");
             break;
 
             case GET_TOTAL_BOOKS:
@@ -57,8 +58,13 @@ class WS_Livre implements IWebServiciable {
 
               //$_POST['TimePosition'];
 
-            returnOneArray("SELECT COUNT(*) as marie FROM readbook WHERE idBook=".$_POST['idBook']." AND login='".$_POST['login']."'");
+            $result = returnOneLine("SELECT IFNULL(COUNT(*),0) as existe FROM readbook WHERE idBook=".$_POST['idBook']." AND login='".$_POST['login']."'")['existe'];
 
+            if ($result == 0)
+              return execReqWithoutResult("INSERT INTO readbook(timePosition, login, idBook) VALUES ('".$_POST['TimePosition']."','".$_POST['login']."',".$_POST['idBook'].")");
+
+            if ($result == 1)
+              return "le glaude";
 
             break;
 
