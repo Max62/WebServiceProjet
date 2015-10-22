@@ -96,6 +96,7 @@ function loadBooks(){
                 if (obj[i].timePosition > 0){
                   $("button.fi-play").text("REPRENDRE");
                   $("audio#"+obj[i].idbook).currentTime = obj[i].timePosition;
+                  $("h6#currentReading").text("La dernière fois vous avez écouté " + getStringTimeFromSecondes(Math.floor(obj[i].timePosition)));
                 }
             }
         }
