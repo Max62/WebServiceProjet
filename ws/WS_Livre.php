@@ -8,11 +8,9 @@ require_once '../ws/WS_Securities.php';
   const GET_ALL_BOOKS = 'selectAllBooks';
   const GET_TOTAL_BOOKS = 'getTotalBooks';
   const GET_FUNCTION_OF_TERMS = 'searchByName';
-<<<<<<< Updated upstream
   const addBook = "addBook";
-=======
+
   const SAVE_TIME_POSITION = 'setPositionTimeOfABook';
->>>>>>> Stashed changes
 
 class WS_Livre implements IWebServiciable {
 
@@ -38,7 +36,6 @@ class WS_Livre implements IWebServiciable {
                 return returnOneArray("SELECT idbook,namebook,yearbook,author,urlbook FROM book WHERE namebook LIKE '".$_POST['searchBoxValue']."%'");
             break;
 
-<<<<<<< Updated upstream
             case addBook:
                 $array = [
                     "nameBook" => $_POST['nameBook'],
@@ -56,8 +53,6 @@ class WS_Livre implements IWebServiciable {
                 Helper::ThrowAccessDenied();
                 break;
 
-
-=======
             case SAVE_TIME_POSITION:
 
               //$_POST['TimePosition'];
@@ -67,7 +62,6 @@ class WS_Livre implements IWebServiciable {
 
             break;
 
->>>>>>> Stashed changes
             default:
                 Helper::ThrowAccessDenied();
             break;
