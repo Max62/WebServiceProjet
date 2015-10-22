@@ -62,15 +62,18 @@ function loadBooks(){
                              "<strong>" + obj[i].namebook + " - " + obj[i].yearbook + " par " + obj[i].author + "<hr/></strong>" +
 
                           //  "<audio controls='controls' preload='none'>" +
-                          "<source src='" + obj[i].urlbook + "' type='audio/mp3' id='"+obj[i].idbook+"'/>" +
-                          "<button type='button'  name='play' value='Play' class='fi-play' onClick='play()'>"+
-                        "   PLAY" +
-                        "</button>"+
-                        "<span>" + "    " +
-                        "</span>" +
-                          "<button type='button'  name='stop' value='Stop' class='fi-stop' onClick='stop()'>"+
-                        "   STOP" +
-                        "</button>" +
+                          "<audio src='" + obj[i].urlbook + "' type='audio/mp3' id='"+obj[i].idbook+"'/>" +
+                          "<button type='button'  name='play' value='Play' class='fi-play' onclick='play("+obj[i].idbook+")'>"+
+                          "   PLAY" +
+                          "</button>"+
+                          "<span>" + "    " +
+                          "</span>" +
+                          "<button type='button'  name='stop' value='Stop' class='fi-stop' onclick='stop("+obj[i].idbook+")'>"+
+                          "   STOP" +
+                          "</button>" +
+                          "<span>" + "    " +
+                          "</span>" +
+                          "<h6 id='currentReading'></h1>"+
                             //"</audio>"+
                         "</div>"+
 
@@ -107,16 +110,20 @@ $("#searchBox").keyup(function(){
                              "<strong>" + obj[i].namebook + " - " + obj[i].yearbook + " par " + obj[i].author + "<hr/></strong>" +
 
                             //"<audio controls='controls' preload='none'>" +
-                            "<source src='" + obj[i].urlbook + "' type='audio/mp3' id='"+obj[i].idbook+"'/>" +
-                            "<button type='button'  name='play' value='Play' class='fi-play' onClick='play()'>"+
+                            "<audio src='" + obj[i].urlbook + "' type='audio/mp3' id='"+obj[i].idbook+"' />" +
+                            "<button type='button'  name='play' value='Play' class='fi-play' onclick='play("+obj[i].idbook+")'>"+
                             "   PLAY" +
                             "</button>"+
                             "<span>" + "    " +
                             "</span>" +
-                            "<button type='button'  name='stop' value='Stop' class='fi-stop' onClick='stop()'>"+
+                            "<button type='button'  name='stop' value='Stop' class='fi-stop' onclick='stop("+obj[i].idbook+")'>"+
                             "   STOP" +
                             "</button>" +
+                            "<span>" + "    " +
+                            "</span>" +
+                            "<h6 id='currentReading'></h1>"+
                             //"</audio>"+
+
                         "</div>"+
 
                     "</div>"+
@@ -130,3 +137,41 @@ $("#searchBox").keyup(function(){
   }
 
 });
+
+function play(id){
+  var element = document.getElementById(id);
+  element.play();
+}
+
+function stop(id){
+
+  var element = document.getElementById(id);
+  element.pause();
+
+  alert(getStringTimeFromSecondes(67));
+
+  $($(element).parent()).children("h6").text("Vous avez écouté ce morceau pendant " + getStringTimeFromSecondes(Math.floor(element.currentTime)));
+}
+
+function getStringTimeFromSecondes(nbSecondes){
+
+var hours = parseInt( nbSecondes / 3600 ) % 24;
+var minutes = parseInt( nbSecondes / 60 ) % 60;
+var seconds = nbSecondes % 60;
+
+var chaineAretourner = "";
+
+if (hours > 0) {
+  chaineAretourner += (hours < 10 ? "0" + hours : hours) + " h ";
+}
+
+if (minutes > 0) {
+  chaineAretourner += (minutes < 10 ? "0" + minutes : minutes) + " min";
+}
+
+if (seconds > 0) {
+  chaineAretourner += (seconds  < 10 ? "0" + seconds : seconds) + "s ";
+}
+
+  return chaineAretourner;
+}
