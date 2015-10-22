@@ -5,16 +5,11 @@ require_once '../ws/bdd.ini.php';
 require_once '../ws/WS_Livre.php';
 require_once '../ws/WS_Securities.php';
 
+  const GET_ALL_BOOKS = 'selectAllBooks';
 
 class WS_Livre implements IWebServiciable {
 
-    const GET_ALL_BOOKS = 'selectAll';
-
     function __construct() {
-    
-    }
-
-    public function doDelete() {
 
     }
 
@@ -35,23 +30,6 @@ class WS_Livre implements IWebServiciable {
 
     public function doPost() {
 
-    }
-
-    public function doPut() {
-
-    }
-
-    public function doRequest() {
-
-    }
-
-
-    public function setParameters() {
-
-    }
-
-    public function doNeedAuth() {
-        return true;
     }
 
 }
