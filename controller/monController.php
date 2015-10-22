@@ -1,5 +1,5 @@
 <?php
-	// Ne plus toucher au controller
+
 	include_once('helper.php');
 
 	const PATH_WEBSERVICES = '../ws';
@@ -7,25 +7,27 @@
 	if(!isset($_GET['ws']))
 		Helper::ThrowAccessDenied();
 
-	// We gets the informations of the desired service.
+	// Retourne le nom du fichier PHP --> WS_GENRE par exemple
 	$serviceName = 'WS_'.ucfirst(strtolower($_GET['ws']));
 
-	//$serviceName = ucfirst(strtolower($_GET['ws']).'WS');
+	// permet de gerer l'orthographe du fichier
 	$servicePath = PATH_WEBSERVICES.'//'.$serviceName.'.php';
 	//$servicePath = PATH_WEBSERVICES.'/'.$serviceName.'.php';
 
-	// If the service doesn't exist, we stop the request.
+	// Test si le fichier existe
 	if (!file_exists($servicePath))
 		Helper::ThrowAccessDenied();
 
 	$method = "do".ucfirst(strtolower($_SERVER['REQUEST_METHOD']));
 
-	// We create and execute the service.
+	// ajoute la référence du fichier
 	require_once($servicePath);
-	$service = new $serviceName();
+	$service = new $serviceName(); // instanciation
 
+
+	// execution de la méthode
 	$result = $service->$method();
 
-	// At the end, we return;urn the result.
+	// si il y a un résultat, on retourne se résultat
 	if ($result !== null)
 		echo json_encode($result);
