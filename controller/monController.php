@@ -29,5 +29,9 @@
 	$result = $service->$method();
 
 	// si il y a un résultat, on retourne se résultat
+
+	if ($_POST['action'] == 'connect' && $_POST['ws'] == 'users')
+		$_SESSION['monUserCo'] = $result;
+
 	if ($result !== null)
 		echo json_encode($result);

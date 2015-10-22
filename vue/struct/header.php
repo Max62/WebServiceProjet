@@ -4,7 +4,6 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-
 <html class="no-js" lang="fr" >
     <head>
         <meta charset="utf-8">
@@ -28,7 +27,9 @@ and open the template in the editor.
                     <li class="name">
                         <h1>
                             <a href="#">
-                                <?php echo $_SESSION['monUserCo']['firstname']." ".$_SESSION['monUserCo']['lastname']; ?>
+                                <?php
+                                  echo $_SESSION['monUserCo']['firstname']." ".$_SESSION['monUserCo']['lastname'];
+                                ?>
                             </a>
                         </h1>
                     </li>
