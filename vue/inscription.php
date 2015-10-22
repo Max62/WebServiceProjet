@@ -13,7 +13,7 @@ if(isset($_POST['client'])){
 
         <link rel="stylesheet" href="/WebServiceProjet/asset/css/normalize.css">
         <link rel="stylesheet" href="/WebServiceProjet/asset/css/foundation.css">
-
+        <link rel="stylesheet" href="/WebServiceProjet/asset/css/foundation-icons.css">
 
         <script src="../asset/js/vendor/modernizr.js"></script>
 
@@ -117,9 +117,10 @@ if(isset($_POST['client'])){
             if($("#password").val().trim() == $("#p2").val().trim()){
                 $.ajax({
                     method: "POST",
-                    url : "/WebServiceProjet/controller/monController.php?",
+                    url : "/WebServiceProjet/controller/monController.php",
                     data: { ws: 'users', action : 'subscribe',login: $("#login").val(), password: $("#password").val(), email: $("#email").val(),firstname : $("#firstname").val(),lastname : $("#lastname").val()},
                     success: function(response) {
+                        console.log(response);
                             $("body").append("<p color:'green;'>Utilisateur ajouté ! </p>");
                     }
                 });

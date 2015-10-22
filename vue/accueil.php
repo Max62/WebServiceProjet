@@ -27,29 +27,17 @@ if(isset($_POST['client'])){
                 <a href="#">
                     <div class="panel callout radius">
                         <h6>99  items in your cart</h6>
-            </div>
+                    </div>
                 </a>
 
             </div>
 
-
-
-
-
-
             <div class="large-8 columns">
-
                 <div class="row">
-
-
-
-
                 </div>
             </div>
+
         </div>
-
-
-
 
         <footer class="row">
             <div class="large-12 columns"><hr/>

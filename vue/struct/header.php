@@ -43,7 +43,6 @@ and open the template in the editor.
                 <section class="top-bar-section">
 
                     <ul class="right">
-
                         <li class="has-form">
                             <div class="row collapse">
                                 <!--<div class="large-8 small-9 columns">-->

@@ -42,9 +42,9 @@ class WS_Users implements IWebServiciable {
                         "password" => $_POST['password']
                     ];
 
-                      return execReqWithoutResult("INSERT INTO users(lastname, firstname, mail, login, password) VALUES ('".$array['lastname']."','".$array['firstname']."','".$array['email']."',''".$array['login']."','".$array['password']."')");
 
-              default:
+                      return execReqWithoutResult("INSERT INTO users(lastname, firstname, mail, login, password) VALUES ('".$array['lastname']."','".$array['firstname']."','".$array['email']."','".$array['login']."','".$array['password']."')");
+             default:
                 Helper::ThrowAccessDenied();
                 break;
         }
