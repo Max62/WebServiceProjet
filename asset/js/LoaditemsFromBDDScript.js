@@ -147,9 +147,7 @@ function stop(id){
 
   var element = document.getElementById(id);
   element.pause();
-
-  alert(getStringTimeFromSecondes(67));
-
+  
   $($(element).parent()).children("h6").text("Vous avez écouté ce morceau pendant " + getStringTimeFromSecondes(Math.floor(element.currentTime)));
 }
 
