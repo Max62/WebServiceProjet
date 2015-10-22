@@ -40,7 +40,6 @@ function totalBooks(){
 
 
 function loadBooks(){
-  var buttonString ="";
     $.ajax({
         method: "POST",
         url : "/WebServiceProjet/controller/monController.php",
@@ -49,17 +48,6 @@ function loadBooks(){
             var obj = jQuery.parseJSON(response);
             $($(".row ").children(".large-8").children(".row")).empty();
             for(var i = 0; i < obj.length;i++){
-
-              if (obj[i].timePosition > 0){
-                buttonString = "<button type='button'  name='play' value='Play' class='fi-play' onclick='play("+obj[i].idbook+")'>"+
-              "   REPRENDRE" +
-              "</button>";
-            }else{
-              buttonString="<button type='button'  name='play' value='Play' class='fi-play' onclick='play("+obj[i].idbook+")'>"+
-              "   PLAY" +
-              "</button>";
-            }
-
 
                 $($(".row ").children(".large-8").children(".row")).append("<br><br>" +
                 "<div class='large-12 columns'>" +
@@ -85,7 +73,7 @@ function loadBooks(){
                           "</button>" +
                           "<span>" + "    " +
                           "</span>" +
-                          "<h6 id='currentReading'></h1>"+
+                          "<h6 id='currentReading"+obj[i].idbook+"'></h1>"+
                             //"</audio>"+
                         "</div>"+
 
@@ -95,13 +83,16 @@ function loadBooks(){
 
                 if (obj[i].timePosition > 0){
                   $("button.fi-play").text("REPRENDRE");
-                  $("audio#"+obj[i].idbook).currentTime = obj[i].timePosition;
-                  $("h6#currentReading").text("La dernière fois vous avez écouté " + getStringTimeFromSecondes(Math.floor(obj[i].timePosition)));
+                  console.log(obj[i].timePosition + " " +i);
+                  $("audio#"+obj[i].idbook).setCurrentTime = 10;
+                  $("h6#currentReading"+obj[i].idbook).text("La dernière fois vous avez écouté " + getStringTimeFromSecondes(Math.floor(obj[i].timePosition)));
                 }
             }
         }
     });
 };
+
+
 
 $("#searchBox").keyup(function(){
   var valeureSaisie = $('#searchBox').val();
