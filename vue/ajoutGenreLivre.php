@@ -38,13 +38,13 @@ require_once("{$base_dir}vue{$ds}struct{$ds}header.php"); ?>
                                     <span class="prefix">Nom</span>
                                 </div>
                                 <div class="large-9 columns">
-                                    <input type="text" required="required" placeholder="Nom">
+                                    <input type="text" required="required" placeholder="nameType" id="nameType">
                                 </div>
                             </div>
                         </div>
 
                         <div class="large-12 columns">
-                            <input class="button radius success right" type="submit" value="Ajouter">
+                            <input class="button radius success right" type="submit" value="Ajouter" id="AjoutGenre">
                         </div>
                     </div>
                 </fieldset>
@@ -59,3 +59,21 @@ require_once("{$base_dir}vue{$ds}struct{$ds}header.php"); ?>
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__)  . $ds . '..') . $ds;
 require_once("{$base_dir}vue{$ds}struct{$ds}footer.php"); ?>
+
+<script src="/WebServiceProjet/asset/js/vendor/jquery.js"></script>
+<script src="/WebServiceProjet/asset/js/foundation.min.js"></script>
+<script>
+
+    $( "#AjoutGenre" ).click(function() {
+            $.ajax({
+                method: "POST",
+                url : "/WebServiceProjet/controller/monController.php",
+                data: { ws: 'genre', action : 'addGenre',nameType: $("#nameType").val()},
+                success: function(response) {
+                    console.log(response);
+                    $("body").append("<p color:'green;'>Genre ajouté ! </p>");
+                }
+            });
+    });
+
+</script>

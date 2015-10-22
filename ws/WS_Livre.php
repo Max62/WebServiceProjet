@@ -6,9 +6,7 @@ require_once '../ws/WS_Livre.php';
 require_once '../ws/WS_Securities.php';
 
   const GET_ALL_BOOKS = 'selectAllBooks';
-
   const GET_TOTAL_BOOKS = 'getTotalBooks';
-
   const GET_FUNCTION_OF_TERMS = 'searchByName';
 
 class WS_Livre implements IWebServiciable {
