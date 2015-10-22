@@ -2,9 +2,9 @@
  * Created by MAXIME on 01/10/15.
  */
 $( document ).ready(function() {
-    loadTypes();
-    totalBooks();
-    loadBooks();
+   loadTypes();
+   totalBooks();
+   loadBooks();
 });
 
 
@@ -33,10 +33,10 @@ function totalBooks(){
         url : "/WebServiceProjet/controller/monController.php",
         data: { ws: 'livre', action : 'getTotalBooks'},
         success: function(response) {
-            $('.panel.callout.radius').html('<h6><b>' + jQuery.parseJSON(response)[0].cpt + ' Livre(s) disponible(s) !</b></h6')
+            $('.panel.callout.radius').html('<h6><b>' + jQuery.parseJSON(response)[0].cpt + ' Livre(s) disponible(s) !</b></h6');
         }
     });
-};
+}
 
 
 
@@ -147,8 +147,24 @@ function stop(id){
 
   var element = document.getElementById(id);
   element.pause();
-  
-  $($(element).parent()).children("h6").text("Vous avez écouté ce morceau pendant " + getStringTimeFromSecondes(Math.floor(element.currentTime)));
+
+  if (element.currentTime > 1){
+    $($(element).parent()).children("h6").text("Vous avez écouté ce morceau pendant " + getStringTimeFromSecondes(Math.floor(element.currentTime)));
+
+    enregistrerPosition(id,element.currentTime);
+  }
+}
+
+
+function enregistrerPosition(idBook,TimeOfPosition){
+  $.ajax({
+      method: "POST",
+      url : "/WebServiceProjet/controller/monController.php",
+      data: { ws: 'livre', action : 'setPositionTimeOfABook', idBook : idBook, TimePosition : TimeOfPosition, login : $("#IDK").val() },
+      success: function(response) {
+          alert(response);
+      }
+  });
 }
 
 function getStringTimeFromSecondes(nbSecondes){
