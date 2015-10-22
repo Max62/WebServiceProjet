@@ -12,21 +12,6 @@ class WS_Genre implements IWebServiciable {
 
     }
 
-    public function doGet() {
-
-      if (!isset($_GET['action']))
-        Helper::ThrowAccessDenied();
-
-      switch ($_GET['action']){
-            case GET_GENRES:
-              return returnOneArray("SELECT idtype,nametype FROM type");
-            default:
-              Helper::ThrowAccessDenied();
-              break;
-      }
-
-    }
-
     public function doPost() {
 
         if (!isset($_POST['action']))

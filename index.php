@@ -153,9 +153,12 @@ if(isset($_POST['client'])){
         $( "#btnCnx" ).click(function() {
             $.ajax({
                 method: "POST",
-                url : "/WebServiceProjet/controller/monController.php?ws=users&action=connect",
-                data: { login: $("#monLogin").val(), password: $("#monPwd").val() },
+                url : "/WebServiceProjet/controller/monController.php",
+                data: { ws: 'users', action : 'connect',
+                        login: $("#monLogin").val(), password: $("#monPwd").val()
+                       },
                 success: function(response) {
+                    alert(response);
                     if (jQuery.parseJSON(response).mail.indexOf("@") > -1){
                         $.ajax({
                             type: "POST",

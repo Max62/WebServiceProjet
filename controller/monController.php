@@ -4,11 +4,11 @@
 
 	const PATH_WEBSERVICES = '../ws';
 
-	if(!isset($_GET['ws']))
+	if(!isset($_POST['ws']))
 		Helper::ThrowAccessDenied();
 
 	// Retourne le nom du fichier PHP --> WS_GENRE par exemple
-	$serviceName = 'WS_'.ucfirst(strtolower($_GET['ws']));
+	$serviceName = 'WS_'.ucfirst(strtolower($_POST['ws']));
 
 	// permet de gerer l'orthographe du fichier
 	$servicePath = PATH_WEBSERVICES.'//'.$serviceName.'.php';

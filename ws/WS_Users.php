@@ -14,12 +14,7 @@ class WS_Users implements IWebServiciable {
 
     }
 
-    public function doGet() {
-
-    }
-
     public function doPost() {
-
 
       if (!isset($_POST['action']))
         Helper::ThrowAccessDenied();
@@ -54,14 +49,6 @@ class WS_Users implements IWebServiciable {
                 break;
         }
    }
-
-
-    public function doPut()
-    {
-
-        parse_str(file_get_contents("php://input"), $post_vars);
-
-    }
 }
 
 ?>
