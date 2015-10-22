@@ -63,8 +63,14 @@ function loadBooks(){
 
                           //  "<audio controls='controls' preload='none'>" +
                           "<source src='" + obj[i].urlbook + "' type='audio/mp3' id='"+obj[i].idbook+"'/>" +
-                          "<input type='button'  name='play' value='Play' onClick='play()'>"+
-                          "<input type='button'  name='play' value='Stop'> onClick='stop()'"+
+                          "<button type='button'  name='play' value='Play' class='fi-play' onClick='play()'>"+
+                        "   PLAY" +
+                        "</button>"+
+                        "<span>" + "    " +
+                        "</span>" +
+                          "<button type='button'  name='stop' value='Stop' class='fi-stop' onClick='stop()'>"+
+                        "   STOP" +
+                        "</button>" +
                             //"</audio>"+
                         "</div>"+
 
