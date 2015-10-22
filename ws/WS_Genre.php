@@ -19,11 +19,14 @@ class WS_Genre implements IWebServiciable {
             Helper::ThrowAccessDenied();
 
         switch ($_POST['action']){
+
             case GET_GENRES:
                 return returnOneArray("SELECT idtype,nametype FROM type");
+
             default:
                 Helper::ThrowAccessDenied();
                 break;
+
             case addGenre:
                 $array = [
                     "nameType" => $_POST['nameType'],

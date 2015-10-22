@@ -7,6 +7,8 @@ require_once '../ws/WS_Securities.php';
 
 const GET_CONNEXION_USER = 'connect';
 const BE_SUBSCRIBED = 'subscribe';
+const getDetailsUser = 'getDetailsUser';
+const updateUser = 'updateUser';
 
 class WS_Users implements IWebServiciable {
 
@@ -32,7 +34,27 @@ class WS_Users implements IWebServiciable {
 
                     return returnOneLine($sql);
 
-              case BE_SUBSCRIBED:
+
+               case getDetailsUser:
+
+                $sql = "SELECT lastname,firstname,mail,login FROM Users WHERE login = '".$_POST['login']."'";
+
+                return returnOneLine($sql);
+
+               case updateUser:
+                $array = [
+                    "lastName" => $_POST['lastName'],
+                    "firstName" => $_POST['firstName'],
+                    "mail" => $_POST['mail'],
+                    "login" => $_POST['login'],
+                    "password" => $_POST['password'],
+                ];
+
+
+                return execReqWithoutResult("UPDATE users SET lastName='".$array['lastName']."',firstName='".$array['firstName']."',login='".$array['login']."',mail='".$array['mail']."',password='".$array['password']."' WHERE login = '".$_POST['login']."'");
+
+
+            case BE_SUBSCRIBED:
 
                     $array = [
                         "login" => $_POST['login'],

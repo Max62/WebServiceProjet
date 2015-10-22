@@ -38,7 +38,7 @@ require_once("{$base_dir}vue{$ds}struct{$ds}header.php"); ?>
                                 <span class="prefix">Nom</span>
                             </div>
                             <div class="large-9 columns">
-                                <output type="text" required="required" placeholder="Nom" id="lastName">
+                                <input type="text" required="required" placeholder="Nom" id="lastName">
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@ require_once("{$base_dir}vue{$ds}struct{$ds}header.php"); ?>
                                 <span class="prefix">Pr&eacute;nom</span>
                             </div>
                             <div class="large-9 columns">
-                                <output type="text" placeholder="Pr&eacute;nom" id="firstName">
+                                <input type="text" placeholder="Pr&eacute;nom" id="firstName">
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@ require_once("{$base_dir}vue{$ds}struct{$ds}header.php"); ?>
                                 <span class="prefix">Mail</span>
                             </div>
                             <div class="large-9 columns">
-                                <output type="text" placeholder="Mail" id="mail">
+                                <input type="text" placeholder="Mail" id="mail">
                             </div>
                         </div>
                     </div>
@@ -71,10 +71,26 @@ require_once("{$base_dir}vue{$ds}struct{$ds}header.php"); ?>
                                 <span class="prefix">Login</span>
                             </div>
                             <div class="large-9 columns">
-                                <output type="text" placeholder="login" id="login">
+                                <input type="text" placeholder="login" id="login" readonly="readonly">
                             </div>
                         </div>
                     </div>
+
+                    <div class="large-12 columns">
+                        <div class="row collapse prefix-radius">
+                            <div class="large-3 columns">
+                                <span class="prefix">Mot de passe</span>
+                            </div>
+                            <div class="large-9 columns">
+                                <input type="password" placeholder="Mot de passe" id="password">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="large-12 columns">
+                        <input class="button radius success right" type="submit" value="Modifier" id="updateUser">
+                    </div>
+
                 </div>
             </fieldset>
         </form>
@@ -93,51 +109,35 @@ require_once("{$base_dir}vue{$ds}struct{$ds}footer.php"); ?>
 <script src="/WebServiceProjet/asset/js/foundation.min.js"></script>
 <script>
 
-    $( "#AddBook" ).click(function() {
+    $( "#updateUser" ).click(function() {
         $.ajax({
             method: "POST",
             url : "/WebServiceProjet/controller/monController.php",
-            data: { ws: 'livre', action : 'addBook',nameBook: $("#nameBook").val(), yearBook: $("#yearBook").val(), author: $("#author").val(), urlBook : $("#urlBook").val(), episode : $("#episode").val(), idSeries: $("#idSeries").val(), idType: $("#idType").val()},
+            data: { ws: 'users', action : 'updateUser',lastName: $("#lastName").val(), firstName: $("#firstName").val(), mail: $("#mail").val(), login: $("#login").val(),password: $("#password").val()},
             success: function(response) {
                 console.log(response);
-                $("body").append("<p color:'green;'>Livre ajouté ! </p>");
+                $("body").append("<p color:'green;'>Utilisateur modifié ! </p>");
             }
         });
     });
 
-    function loadSeries(){
-        $.ajax({
-            method: "POST",
-            url : "/WebServiceProjet/controller/monController.php",
-            data: { ws: 'series', action : 'getAllSeries'},
-            success: function(response) {
-                var obj = jQuery.parseJSON(response);
-                //               $('#allSeries .dropdown').on('click', '.itemDelete', function() {
-                //                   $(this).closest('li').remove();
-                //               });
-                for(var i = 0; i < obj.length;i++){
-                    $("select#idSeries").append("<option value='"+ obj[i].idSeries+"'>"+ obj[i].nameSeries + "</option>");
-                }
-            }
-        });
-    };
 
-    function loadAllType(){
+    function loadDetails(){
         $.ajax({
             method: "POST",
             url : "/WebServiceProjet/controller/monController.php",
-            data: { ws: 'genre', action : 'getAllGenres'},
+            data: { ws: 'users', action : 'getDetailsUser',login: $("#IDK").val()},
             success: function(response) {
                 var obj = jQuery.parseJSON(response);
-                for(var i = 0; i < obj.length;i++){
-                    $("select#idType").append("<option value='"+ obj[i].idtype+"'>"+ obj[i].nametype + "</option>");
-                }
+                        $("#mail").val(obj.mail);
+                        $("#firstName").val(obj.firstname);
+                        $("#lastName").val(obj.lastname);
+                        $("#login").val(obj.login);
             }
         });
     };
 
     $(document).ready(function(){
-        loadSeries();
-        loadAllType();
+        loadDetails();
     });
 </script>
