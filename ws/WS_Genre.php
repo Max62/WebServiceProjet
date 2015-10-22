@@ -4,9 +4,9 @@ require_once '../ws/IWebServiciable.php';
 require_once '../ws/bdd.ini.php';
 require_once '../ws/WS_Genre.php';
 
-class WS_Genre implements IWebServiciable {
+const GET_GENRES = 'getAllGenres';
 
-    const GET_GENRES = 'getAllGenres';
+class WS_Genre implements IWebServiciable {
 
     function __construct() {
 
@@ -17,6 +17,7 @@ class WS_Genre implements IWebServiciable {
       if (!isset($_GET['action']))
         Helper::ThrowAccessDenied();
 
+        echo 'tartine';
 
       switch ($_GET['action']){
             case GET_GENRES:
