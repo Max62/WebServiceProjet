@@ -17,8 +17,6 @@ class WS_Genre implements IWebServiciable {
       if (!isset($_GET['action']))
         Helper::ThrowAccessDenied();
 
-        echo 'tartine';
-
       switch ($_GET['action']){
             case GET_GENRES:
               return returnOneArray("SELECT idtype,nametype FROM type");
@@ -30,6 +28,17 @@ class WS_Genre implements IWebServiciable {
     }
 
     public function doPost() {
+
+        if (!isset($_POST['action']))
+            Helper::ThrowAccessDenied();
+
+        switch ($_POST['action']){
+            case GET_GENRES:
+                return returnOneArray("SELECT idtype,nametype FROM type");
+            default:
+                Helper::ThrowAccessDenied();
+                break;
+        }
 
     }
 }

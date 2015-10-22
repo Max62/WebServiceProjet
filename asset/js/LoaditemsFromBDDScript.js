@@ -11,7 +11,7 @@ function loadTypes(){
 
     $.ajax({
         method: "GET",
-        url : "/WebServiceProjet/controller/GenreController.php",
+        url : "/WebServiceProjet/controller/monController.php?ws=genre&action=getAllGenres",
         success: function(response) {
             var obj = jQuery.parseJSON(response);
             $('#mesGenres .dropdown').on('click', '.itemDelete', function() {
@@ -27,7 +27,7 @@ function loadTypes(){
 function loadBooks(){
     $.ajax({
         method: "GET",
-        url : "/WebServiceProjet/controller/BooksController.php",
+        url : "/WebServiceProjet/controller/monController.php?ws=livre&action=selectAllBooks",
         success: function(response) {
             var obj = jQuery.parseJSON(response);
 

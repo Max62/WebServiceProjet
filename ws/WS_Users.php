@@ -56,11 +56,12 @@ class WS_Users implements IWebServiciable {
    }
 
 
-    public function doPut() {
+    public function doPut()
+    {
 
-      parse_str(file_get_contents("php://input"),$post_vars);
+        parse_str(file_get_contents("php://input"), $post_vars);
 
-
+    }
 }
 
 ?>

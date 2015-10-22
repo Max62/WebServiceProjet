@@ -116,8 +116,8 @@ if(isset($_POST['client'])){
 
             if($("#password").val().trim() == $("#p2").val().trim()){
                 $.ajax({
-                    method: "PUT",
-                    url : "/WebServiceProjet/controller/UserController.php",
+                    method: "POST",
+                    url : "/WebServiceProjet/controller/monController.php?ws=users&action=subscribe",
                     data: { login: $("#login").val(), password: $("#password").val(), email: $("#email").val(),firstname : $("#firstname").val(),lastname : $("#lastname").val()},
                     success: function(response) {
                             $("body").append("<p color:'green;'>Utilisateur ajouté ! </p>");
