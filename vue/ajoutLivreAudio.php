@@ -29,7 +29,7 @@ require_once("{$base_dir}vue{$ds}struct{$ds}header.php"); ?>
         <div class="large-12 columns">
             <form>
                 <fieldset>
-                    <legend>Ajout d'une livre audio</legend>
+                    <legend>Ajout d'un livre audio</legend>
                     <div class="row">
 
                         <div class="large-12 columns">
