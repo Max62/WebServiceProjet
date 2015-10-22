@@ -12,15 +12,11 @@ class WS_Genre implements IWebServiciable {
 
     }
 
-    public function doDelete() {
-
-    }
-
     public function doGet() {
-
 
       if (!isset($_GET['action']))
         Helper::ThrowAccessDenied();
+
 
       switch ($_GET['action']){
             case GET_GENRES:
@@ -34,23 +30,6 @@ class WS_Genre implements IWebServiciable {
 
     public function doPost() {
 
-    }
-
-    public function doPut() {
-
-    }
-
-    public function doRequest() {
-
-    }
-
-
-    public function setParameters() {
-
-    }
-
-    public function doNeedAuth() {
-        return true;
     }
 }
 
