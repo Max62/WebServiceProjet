@@ -65,7 +65,7 @@ and open the template in the editor.
                         <li><a href="#">Mon Compte</a></li>
                         <li class="divider"></li>
                         <li>
-                            <a href="/WebServiceProjet/index.php?logout=true">Logout</a>
+                            <a href="/WebServiceProjet/vue/struct/logout.php">Logout</a>
                         </li>
                     </ul>
                 </section>
