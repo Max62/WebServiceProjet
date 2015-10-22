@@ -8,6 +8,7 @@ require_once '../ws/WS_Securities.php';
   const GET_ALL_BOOKS = 'selectAllBooks';
   const GET_TOTAL_BOOKS = 'getTotalBooks';
   const GET_FUNCTION_OF_TERMS = 'searchByName';
+  const addBook = "addBook";
 
 class WS_Livre implements IWebServiciable {
 
@@ -32,7 +33,25 @@ class WS_Livre implements IWebServiciable {
             case GET_FUNCTION_OF_TERMS:
                 return returnOneArray("SELECT idbook,namebook,yearbook,author,urlbook FROM book WHERE namebook LIKE '".$_POST['searchBoxValue']."%'");
             break;
-            
+
+            case addBook:
+                $array = [
+                    "nameBook" => $_POST['nameBook'],
+                    "yearBook" => $_POST['yearBook'],
+                    "author" => $_POST['author'],
+                    "urlBook" => $_POST['urlBook'],
+                    "episode" => $_POST['episode'],
+                    "idSeries" => $_POST['idSeries'],
+                    "idType" => $_POST['idType']
+                ];
+
+
+                return execReqWithoutResult("INSERT INTO book(nameBook, yearBook, author, urlBook, episode, idSeries, idType) VALUES ('".$array['nameBook']."','".$array['yearBook']."','".$array['author']."','".$array['urlBook']."','".$array['episode']."','".$array['idSeries']."','".$array['idType']."')");
+            default:
+                Helper::ThrowAccessDenied();
+                break;
+
+
             default:
                 Helper::ThrowAccessDenied();
             break;
