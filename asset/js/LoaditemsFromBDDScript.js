@@ -112,7 +112,11 @@ function loadNextEpisode(id){
 function continueReading(id,idancien){
   var obj = $("audio#"+id);
 
+  $(".green").removeClass("green");
+  $(".orange").removeClass("orange");
+
   $(".green").addClass("orange");
+  
   $("#statut"+idancien).html("<b style='color:white'> Vous venez de terminer ce morceau ;) </b>");
   $("#currentReading"+idancien).text("");
 
@@ -212,6 +216,7 @@ $("#searchBox").keyup(function(){
 
 function play(id){
   var obj = $("audio#"+id);
+  $(".green").removeClass("green");
   $(".orange").removeClass("orange");
   if($(obj.parent()).children('.fi-play').text().trim() == "PLAY"){
     $(obj).parent().parent().parent(".panel").addClass("green");
