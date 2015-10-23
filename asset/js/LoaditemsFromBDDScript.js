@@ -116,7 +116,7 @@ function continueReading(id,idancien){
   $(".orange").removeClass("orange");
 
   $(".green").addClass("orange");
-  
+
   $("#statut"+idancien).html("<b style='color:white'> Vous venez de terminer ce morceau ;) </b>");
   $("#currentReading"+idancien).text("");
 
@@ -130,7 +130,7 @@ function continueReading(id,idancien){
   if($(obj.parent()).children('.fi-play').text().trim() == "REPRENDRE"){
     $(obj).parent().parent().parent(".panel").removeClass("red");
     $(obj).parent().parent().parent(".panel").addClass("green");
-    $("#statut"+id).html("<b style='color:white'> Lecture en cours ... </b>");
+    $("#statut"+id).html("");
   }
 
   var element = document.getElementById(id);
@@ -218,6 +218,8 @@ function play(id){
   var obj = $("audio#"+id);
   $(".green").removeClass("green");
   $(".orange").removeClass("orange");
+
+
   if($(obj.parent()).children('.fi-play').text().trim() == "PLAY"){
     $(obj).parent().parent().parent(".panel").addClass("green");
     $("#statut"+id).html("<b style='color:white'> Lecture en cours ... </b>");
