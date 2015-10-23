@@ -9,6 +9,7 @@ require_once '../ws/WS_Securities.php';
   const GET_FUNCTION_OF_TERMS = 'searchByName';
   const addBook = "addBook";
   const DELETE_READING_USER = 'deleteRowReading';
+  const GET_NEXT_POSITION = 'goNext';
 
   const SAVE_TIME_POSITION = 'setPositionTimeOfABook';
 
@@ -60,6 +61,16 @@ class WS_Livre implements IWebServiciable {
               return execReqWithoutResult("UPDATE readbook SET TimePosition='".$_POST['TimePosition']."' WHERE login='".$_POST['login']."' AND idBook =".$_POST['idBook']."");
 
             break;
+
+            case GET_NEXT_POSITION:
+              $result = returnOneLine("SELECT TOP 1 IFNULL(idBook,0) as idBook FROM book WHERE idSeries = (SELECT idSeries FROM book WHERE idBook =".$_POST['idBook'].") AND episode > (SELECT episode FROM book WHERE idBook =".$_POST['idBook'].")")['idBook'];
+
+            if ($result == 0)
+              return returnOneLine("SELECT IFNULL(idBook,0) as idBook FROM book WHERE idSeries = (SELECT idSeries FROM book WHERE idBook =".$_POST['idBook'].") AND episode > (SELECT episode FROM book WHERE idBook =".$_POST['idBook'].")")['idBook'];
+            if ($result > 0)
+              return returnOneLine("SELECT IFNULL(idBook,0) as idBook FROM book WHERE idBook = ".$_POST['idBook']." AND idBook > ['".$_POST['idBook']."']")['idBook'];
+            break;
+
 
             case DELETE_READING_USER:
               return execReqWithoutResult("DELETE FROM readbook WHERE login='".$_POST['login']."' AND idBook=".$_POST['idb']);

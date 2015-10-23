@@ -60,6 +60,11 @@ p.title {
   color:white;
 }
 
+.orange{
+  background-color: orange;
+  color:white;
+}
+
 
 .control{
     display: inline-block;

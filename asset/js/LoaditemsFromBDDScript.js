@@ -87,23 +87,60 @@ function loadBooks(){
 };
 
 function deleteRowInReadingDatabase(obj){
-
   console.log(obj);
-  alert("ID " + $(obj).attr("id"));
   $.ajax({
       method: "POST",
       url : "/WebServiceProjet/controller/monController.php",
       data: { ws: 'livre', action : 'deleteRowReading', idb : $(obj).attr("id"), login : $("#IDK").val()},
       success: function(response) {
-          loadBooks();
           loadNextEpisode($(obj).attr("id"));
       }
   });
 }
 
 function loadNextEpisode(id){
-
+  $.ajax({
+      method: "POST",
+      url : "/WebServiceProjet/controller/monController.php",
+      data: { ws: 'livre', action : 'goNext', idBook : id},
+      success: function(response) {
+          continueReading(jQuery.parseJSON(response),id);
+      }
+  });
 }
+
+function continueReading(id,idancien){
+  var obj = $("audio#"+id);
+
+  $(".green").addClass("orange");
+  $("#statut"+idancien).html("<b style='color:white'> Vous venez de terminer ce morceau ;) </b>");
+  $("#currentReading"+idancien).text("");
+
+  $(".green").removeClass("green");
+
+  if($(obj.parent()).children('.fi-play').text().trim() == "PLAY"){
+    $(obj).parent().parent().parent(".panel").addClass("green");
+    $("#statut"+id).html("<b style='color:white'> Lecture en cours ... </b>");
+  }
+
+  if($(obj.parent()).children('.fi-play').text().trim() == "REPRENDRE"){
+    $(obj).parent().parent().parent(".panel").removeClass("red");
+    $(obj).parent().parent().parent(".panel").addClass("green");
+    $("#statut"+id).html("<b style='color:white'> Lecture en cours ... </b>");
+  }
+
+  var element = document.getElementById(id);
+
+
+  if (isNaN($("#audioPosition"+id).val())){
+    element.currentTime = 0;
+  }else {
+    element.currentTime = $("#audioPosition"+id).val();
+  }
+
+  element.play();
+}
+
 
 $("#searchBox").keyup(function(){
   var valeureSaisie = $('#searchBox').val();
@@ -175,6 +212,7 @@ $("#searchBox").keyup(function(){
 
 function play(id){
   var obj = $("audio#"+id);
+  $(".orange").removeClass("orange");
   if($(obj.parent()).children('.fi-play').text().trim() == "PLAY"){
     $(obj).parent().parent().parent(".panel").addClass("green");
     $("#statut"+id).html("<b style='color:white'> Lecture en cours ... </b>");
